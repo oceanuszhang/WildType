@@ -1,0 +1,21 @@
+# Core
+python-dotenv==1.0.1
+pandas==2.2.2
+requests==2.32.3
+pydantic==2.8.2
+certifi==2024.7.4
+
+# Agent brain
+anthropic==0.34.2
+
+# UI
+gradio==4.44.1  # 4.44.0 has a jinja2 template-cache bug that 500s every page load
+huggingface_hub==0.24.6  # pin: newer hub releases drop HfFolder, breaks gradio import
+
+# Local ESM2 CPU fallback (tools/esm_local.py) — install tonight, weights
+# download once and cache; don't leave this for tomorrow's venue wifi.
+fair-esm==2.0.0
+torch==2.4.1
+
+# Tests
+pytest==8.3.2

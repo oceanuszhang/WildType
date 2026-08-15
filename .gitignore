@@ -1,0 +1,12 @@
+.env
+__pycache__/
+*.pyc
+.venv/
+venv/
+*.egg-info/
+.pytest_cache/
+.DS_Store
+# local model weights cache (fair-esm / torch hub)
+.cache/
+checkpoints/
+*.pt
