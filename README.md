@@ -2,7 +2,9 @@
 
 Species-agnostic genomic variant interpretation agent. re:AGENT Hackathon,
 Track A, Aug 15–16 2026. Demoed live on Ollie (Mini Australian Shepherd) —
-her real Embark report ships with this repo under [`data/`](data/).
+her real Embark report ships with this repo under [`data/`](data/). Full
+proposal (research question, tools, architecture, timeline) is in
+[`docs/project_proposal.md`](docs/project_proposal.md).
 
 **Team:** Computational Bio PhD + ML Compiler Engineer (James)
 
@@ -26,6 +28,8 @@ wildtype/            source package
 data/                 demo data, checked in — see data/README.md
   ollie_embark/           Ollie's real Embark export (CSV, PDF, raw tped/tfam)
   basepaws_samples/       a Basepaws (cat) sample, for the species-agnostic path
+docs/
+  project_proposal.md    the original pitch — research question, tools, architecture, timeline
 scripts/
   smoke_test.py          full pipeline, terminal output, run this first
 tests/                run against Ollie's real data, not fixtures
