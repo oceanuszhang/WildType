@@ -1,18 +1,22 @@
-"""Tool interfaces the agent loop calls against — and the one place that
-decides whether a call goes to a mock, local CPU inference, or the real
-Proto/Paperclip services.
+"""Shared result dataclasses for the tool clients in this package.
 
-Design intent: agent/loop.py never imports MockScoringClient or
-LocalESM2Client or a Proto SDK directly. It calls `tools.base.get_toolset()`
-and gets back something satisfying these interfaces. Swapping WILDTYPE_MODE
-in .env is the only change needed to go from tonight's offline dev to
-tomorrow's live sponsor stack.
+2026-08-15 — this module used to also own a `Toolset`/`get_toolset()`
+mode-switching factory (mock/local/proto) for the pre-pivot deterministic
+Embark-CSV controller (agent/loop.py). That whole controller — loop.py,
+species_mode.py, prompts.py, parsers/embark_csv.py, the Gradio UI, plus
+the mock/local-only clients it alone depended on (esm_local.py,
+mock_data.py, placeholder_sequences.py) — was removed once
+genome_pipeline.py + iterative_agent.py (the real Claude tool-calling
+agent, PROJECT_SPEC.md section 5.1) fully superseded it; those never
+imported anything from Toolset/get_toolset. What's left here is just the
+dataclasses proto_client.py and friends still construct directly, no
+central mode-switching layer needed anymore — each tool decides for
+itself how to fetch real data (Modal, NCBI, UniProt, Biohub) and reports
+failure by raising/returning an error, not by falling back to a mock mode.
 """
 from __future__ import annotations
 
-import os
 from dataclasses import dataclass
-from typing import Protocol
 
 
 # --- result types -----------------------------------------------------------
@@ -68,106 +72,8 @@ class LiteratureHit:
     source: str  # "paperclip" | "uniprot" | "pdb" | ...
 
 
-# --- interfaces --------------------------------------------------------------
-
-
-class ScoringClient(Protocol):
-    def score_missense(self, gene: str, wt_seq: str, position: int, mut_aa: str) -> ESM2Score: ...
-    def functional_embedding(self, gene: str, wt_seq: str, position: int, mut_aa: str) -> FunctionalEmbedding: ...
-
-
-class StructureClient(Protocol):
-    def fold(self, gene: str, sequence: str, high_accuracy: bool = False) -> StructurePrediction: ...
-    def align(self, structure_a: str, structure_b: str) -> TMAlignResult: ...
-
-
-class DNAScoringClient(Protocol):
-    def score_structural(self, locus: str, context_seq: str, variant_desc: str) -> Evo1Score: ...
-
-
-class LiteratureClient(Protocol):
-    def search(self, query: str, max_results: int = 5) -> list[LiteratureHit]: ...
-
-
 @dataclass
 class SequenceResult:
     sequence: str
     is_real: bool  # True = real UniProt fetch, False = deterministic placeholder
     source: str  # "uniprot" | "placeholder"
-
-
-class SequenceClient(Protocol):
-    def fetch(self, gene: str, organism: str = "Canis lupus familiaris") -> SequenceResult: ...
-
-
-@dataclass
-class Toolset:
-    scoring: ScoringClient
-    structure: StructureClient
-    dna: DNAScoringClient
-    literature: LiteratureClient
-    sequences: SequenceClient
-    mode: str
-
-
-def get_toolset(mode: str | None = None) -> Toolset:
-    mode = (mode or os.environ.get("WILDTYPE_MODE", "mock")).lower()
-
-    if mode == "mock":
-        from wildtype.tools.mock_data import (
-            MockScoringClient,
-            MockStructureClient,
-            MockDNAClient,
-            MockLiteratureClient,
-        )
-        from wildtype.tools.placeholder_sequences import PlaceholderSequenceClient
-
-        return Toolset(
-            scoring=MockScoringClient(),
-            structure=MockStructureClient(),
-            dna=MockDNAClient(),
-            literature=MockLiteratureClient(),
-            sequences=PlaceholderSequenceClient(),
-            mode=mode,
-        )
-
-    if mode == "local":
-        # Real ESM2 inference on CPU, no sponsor access required. Structure
-        # prediction and DNA scoring have no offline-capable equivalent, so
-        # those two still fall back to mocks even in "local" mode — that's
-        # intentional, not a bug: ESM2 is the one model small enough to run
-        # on a laptop tonight. Sequences stay placeholder too — real UniProt
-        # fetch needs network access, which breaks "local" mode's offline
-        # guarantee even though it needs no sponsor key.
-        from wildtype.tools.esm_local import LocalESM2Client
-        from wildtype.tools.mock_data import MockStructureClient, MockDNAClient, MockLiteratureClient
-        from wildtype.tools.placeholder_sequences import PlaceholderSequenceClient
-
-        return Toolset(
-            scoring=LocalESM2Client(),
-            structure=MockStructureClient(),
-            dna=MockDNAClient(),
-            literature=MockLiteratureClient(),
-            sequences=PlaceholderSequenceClient(),
-            mode=mode,
-        )
-
-    if mode == "proto":
-        from wildtype.tools.proto_client import (
-            ProtoScoringClient,
-            ProtoStructureClient,
-            ProtoDNAClient,
-            ProtoSequenceClient,
-        )
-        from wildtype.tools.paperclip_client import PaperclipClient
-
-        return Toolset(
-            scoring=ProtoScoringClient(),
-            structure=ProtoStructureClient(),
-            dna=ProtoDNAClient(),
-            literature=PaperclipClient(),
-            sequences=ProtoSequenceClient(),
-            mode=mode,
-        )
-
-    raise ValueError(f"unknown WILDTYPE_MODE={mode!r} (expected mock|local|proto)")
