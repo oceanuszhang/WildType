@@ -9,11 +9,11 @@ Ollie's (Mini Australian Shepherd) full Embark report — the primary demo subje
 
 | File | What it is |
 |---|---|
-| `Embark-full-results-data-*.csv` | Full results export, long-format (`category, name, value`). This is what `wildtype.parsers.embark_csv` parses. |
+| `Embark-full-results-data-*.csv` | Full results export, long-format (`category, name, value`). Not parsed by the pipeline itself — used only as a source for `wildtype/tools/embark_panel_genes.py`'s post-hoc validation gene list (see main README's Validation section). |
 | `Ollie_HealthReport.pdf` | Embark's rendered PDF report — same underlying calls, for reference/citation-checking. |
-| `raw/*.tped`, `raw/*.tfam` | Raw PLINK-format genotype export, 229,988 SNP markers, 99.8% call rate. Parsed by `wildtype.parsers.tped` for the beyond-Embark scan. |
+| `raw/*.tped`, `raw/*.tfam` | Raw PLINK-format genotype export, 229,988 SNP markers, 99.8% call rate. This is the real pipeline input — parsed by `wildtype.parsers.tped`, see main README's "Run it". |
 
-Ollie's four flagged/notable calls (the validation set — see main README):
+Ollie's four flagged/notable calls (referenced only for post-hoc validation — see main README):
 
 | Gene | Call |
 |---|---|

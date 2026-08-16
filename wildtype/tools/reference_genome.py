@@ -99,10 +99,22 @@ class _ChromosomeTileCache:
         from proto_tools import run_ncbi_efetch
         from proto_tools.tools.database_retrieval.ncbi.efetch import NCBIEfetchConfig, NCBIEfetchInput
 
-        out = run_ncbi_efetch(
-            NCBIEfetchInput(db="nuccore", identifier=accession, return_format="fasta", seq_start=start, seq_stop=stop),
-            NCBIEfetchConfig(ncbi_email="wildtype-hackathon@example.com"),
-        )
+        try:
+            out = run_ncbi_efetch(
+                NCBIEfetchInput(db="nuccore", identifier=accession, return_format="fasta", seq_start=start, seq_stop=stop),
+                NCBIEfetchConfig(ncbi_email="wildtype-hackathon@example.com"),
+            )
+        except Exception:
+            # run_ncbi_efetch raises rather than returning success=False for
+            # some real failure modes — live-caught 2026-08-15: NCBI answers
+            # 400 Bad Request (not a graceful clamp, unlike its handling of
+            # `start` near position 1) when `stop` runs past a chromosome's
+            # true end, which a full-genome scan hits on every chromosome's
+            # last marker. Also covers plain network hiccups (timeouts,
+            # connection resets) hit live earlier this session. Either way,
+            # this is "can't resolve this one window," not a reason to crash
+            # an entire multi-hour run — treated the same as out.success=False.
+            return None
         if not out.success or not out.fasta_records:
             return None
         record = out.fasta_records[0]
@@ -165,6 +177,70 @@ def resolve_reference_assembly(organism: str) -> AssemblyInfo | None:
                         report_url=ftp_report.replace("ftp://", "https://"),
                         category=wanted_category,
                     )
+    return None
+
+
+def resolve_assembly_by_accession(accession: str, organism: str) -> AssemblyInfo | None:
+    """Construct an AssemblyInfo for a SPECIFIC, KNOWN assembly accession —
+    unlike resolve_reference_assembly(), doesn't require it to hold NCBI's
+    current "reference genome"/"representative genome" category. Needed
+    because genotyping platforms map their coordinates to whatever
+    assembly was current when the chip was designed, then keep using it
+    for consistency — they don't silently follow NCBI's reference pointer
+    when a newer assembly gets promoted.
+
+    Real case this exists for (2026-08-15): Ollie's Embark TPED file uses
+    CanFam3.1 (GCF_000002285.3) coordinates, confirmed two ways —
+    (1) the chr2 accession's real length (85,426,708, from CanFam3.1's own
+    assembly report) matches almost exactly where a full-genome scan
+    against the newer UU_Cfam_GSD_1.0 started throwing "past end of
+    chromosome" errors, and (2) the same numeric position (chr1:68723) on
+    the two assemblies returns completely unrelated DNA sequence — not
+    minor drift, a real coordinate-system mismatch. UU_Cfam_GSD_1.0 is
+    what resolve_reference_assembly("Canis lupus familiaris") returns
+    (it's NCBI's current pick), which is why every finding from earlier
+    this session was silently comparing Ollie's genotype against the
+    wrong assembly.
+
+    Generic, not dog-specific — any caller who has independently
+    determined which assembly their input data's coordinates actually use
+    can pass that accession here instead of trusting NCBI's current-
+    reference default.
+    """
+    from proto_tools import run_ncbi_esearch, run_ncbi_esummary
+    from proto_tools.tools.database_retrieval.ncbi.esearch import NCBIEsearchConfig, NCBIEsearchInput
+    from proto_tools.tools.database_retrieval.ncbi.esummary import NCBIEsummaryConfig, NCBIEsummaryInput
+
+    email = "wildtype-hackathon@example.com"
+    # esummary needs a numeric UID, not the "GCF_..." accession string
+    # itself — confirmed live 2026-08-15 (passing the accession directly
+    # to esummary returns {'uids': []}, no error, just nothing). esearch's
+    # [Assembly Accession] field resolves the accession to its UID first.
+    search = run_ncbi_esearch(
+        NCBIEsearchInput(db="assembly", search_term=f"{accession}[Assembly Accession]", max_results=5),
+        NCBIEsearchConfig(ncbi_email=email),
+    )
+    if not search.success or not search.ids:
+        return None
+    summary = run_ncbi_esummary(
+        NCBIEsummaryInput(db="assembly", identifier=",".join(search.ids)),
+        NCBIEsummaryConfig(ncbi_email=email),
+    )
+    if not summary.success:
+        return None
+    for rec in summary.summary.values():
+        if not isinstance(rec, dict) or rec.get("assemblyaccession") != accession:
+            continue
+        ftp_report = rec.get("ftppath_assembly_rpt")
+        if not ftp_report:
+            return None
+        return AssemblyInfo(
+            organism=organism,
+            accession=accession,
+            name=rec.get("assemblyname", ""),
+            report_url=ftp_report.replace("ftp://", "https://"),
+            category=rec.get("refseq_category") or "explicit override",
+        )
     return None
 
 

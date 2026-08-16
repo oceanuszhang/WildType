@@ -99,6 +99,14 @@ class AnalysisRun:
     # not "the pipeline only looked at a few things."
     scan_stats: dict | None = None
     triage_stats: dict | None = None
+    # Added 2026-08-15 after live-catching a real assembly mismatch (Ollie's
+    # Embark TPED coordinates are CanFam3.1, the pipeline was silently
+    # defaulting to NCBI's current "reference genome" pick, UU_Cfam_GSD_1.0
+    # — completely different coordinate systems, invalidating every earlier
+    # finding). Which assembly a run actually used is now surfaced in the
+    # output itself rather than only living in a code comment — the
+    # dashboard shows this so it's never silently ambiguous again.
+    assembly_used: dict | None = None  # {"accession": ..., "name": ...}
 
     def to_dict(self) -> dict:
         return {
@@ -110,6 +118,7 @@ class AnalysisRun:
             "findings": [f.to_dict() for f in self.findings],
             "scan_stats": self.scan_stats,
             "triage_stats": self.triage_stats,
+            "assembly_used": self.assembly_used,
             "summary": {
                 "total_findings": len(self.findings),
                 "confidence_counts": {

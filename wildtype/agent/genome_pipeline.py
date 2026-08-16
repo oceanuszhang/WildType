@@ -65,7 +65,7 @@ from dataclasses import asdict, dataclass
 from pathlib import Path
 
 from wildtype.agent.iterative_agent import investigate_variant
-from wildtype.agent.schema import AnalysisRun, RiskFinding
+from wildtype.agent.schema import AnalysisRun, ConfidenceAssessment, EvidenceBundle, RiskFinding, VariantRef
 from wildtype.parsers.common_variant import CommonVariant
 from wildtype.parsers.tped import Individual, Marker, iter_tped, load_tfam
 from wildtype.tools.reference_genome import AssemblyInfo, fetch_reference_context, resolve_reference_assembly
@@ -216,6 +216,7 @@ class TriageStats:
     in_or_near_gene: int = 0
     no_gene_nearby: int = 0
     lookup_failed: int = 0
+    priority_gene_matches: int = 0
     stopped_early: bool = False
 
 
@@ -226,12 +227,18 @@ def triage_candidates_near_genes(
     window_bp: int = 100000,
     max_investigated: int | None = 15,
     max_checked: int | None = 2000,
+    priority_genes: frozenset[str] | None = None,
+    assembly: AssemblyInfo | None = None,
+    stratify_by_chromosome: bool = False,
 ) -> tuple[list[CommonVariant], TriageStats]:
     """Deterministic pre-filter between the broad reference-deviation scan
     and the expensive LLM-driven investigation. One real NCBI positional
     gene query per candidate (wildtype/tools/gene_lookup.py — same query
-    the agent's own search_genes_near_position tool uses), no Claude call,
-    no literature search, no foundation-model scoring yet.
+    the agent's own search_genes_near_position tool uses, and as of the
+    2026-08-15 chromosome-gene cache fix, only a live NCBI call on the
+    FIRST candidate per chromosome; every candidate after that on the same
+    chromosome is served from memory), no Claude call, no literature
+    search, no foundation-model scoring yet.
 
     A lookup failure (NCBI hiccup) is NOT the same as "no gene nearby" —
     counted separately in TriageStats.lookup_failed and the candidate is
@@ -239,38 +246,101 @@ def triage_candidates_near_genes(
     know whether it's near a gene or not; better to spend an investigation
     on it than silently drop it because NCBI blinked.
 
-    `max_investigated` caps how many gene-proximity survivors go on to
-    full investigation. `max_checked` is a separate safety bound on how
-    many candidates get a live lookup at all — unlike the reference scan,
-    triage isn't cached (each candidate is a different genomic position, a
-    different esearch), so a gene-sparse candidate list could otherwise
-    make this stage run arbitrarily long searching for survivors that
-    never come. Hitting `max_checked` is recorded as `stopped_early`, not
-    silently swallowed.
+    `priority_genes` (added 2026-08-15, e.g. wildtype/tools/embark_panel_
+    genes.py for the Ollie cross-validation): without it, candidates fill
+    `max_investigated` in file order — since .tped files are sorted by
+    chromosome, that means the investigation budget gets exhausted on
+    early chromosomes before ever reaching a gene on, say, chromosome 14.
+    With it, any candidate landing in/near a named priority gene is
+    guaranteed a slot (all of them, uncapped) with the REMAINING budget
+    filled by other survivors in file order — so a capped investigation
+    budget still reaches specific genes of interest regardless of where
+    in the genome they happen to sit. Also disables the early-exit on
+    survivor count (still bounded by `max_checked`), since we don't know
+    whether a priority match is still further down the candidate list.
+
+    `max_checked` bounds how many candidates get a lookup at all. Was a
+    tight safety net before the chromosome-gene cache (each check was a
+    live network call); now that repeat checks on an already-cached
+    chromosome are ~free, this can be set much higher without a real time
+    cost — the real cost driver became the one-time per-chromosome fetch,
+    not per-candidate checks.
+
+    `stratify_by_chromosome` (added 2026-08-15): without it, survivors
+    fill `max_investigated` in file order — chromosome 1 alone typically
+    has thousands of gene-proximity survivors, so a capped investigation
+    budget never reaches chromosome 2, let alone 9 or 14, no matter how
+    deep the underlying scan goes. This does NOT know or favor any
+    specific gene (unlike `priority_genes` — deliberately not used for
+    the Ollie/Embark cross-validation, since steering toward Embark's own
+    gene list would make any "match" meaningless). It just round-robins
+    the final selection across whichever chromosomes actually produced
+    survivors, so a bounded budget gets genome-wide breadth instead of
+    being dominated by whichever chromosome the file happens to list
+    first. Also disables the early-exit on survivor count (still bounded
+    by `max_checked`), since candidates from later chromosomes need to be
+    seen before a fair round-robin selection can be made.
     """
+    from collections import defaultdict
+
     from wildtype.tools.gene_lookup import find_genes_near_position
 
     stats = TriageStats()
-    survivors: list[CommonVariant] = []
+    priority_survivors: list[CommonVariant] = []
+    other_survivors: list[CommonVariant] = []
+    by_chromosome: dict[str, list[CommonVariant]] = defaultdict(list)
 
     for variant in candidates:
         if max_checked is not None and stats.candidates_checked >= max_checked:
             stats.stopped_early = True
             break
         stats.candidates_checked += 1
-        genes, error = find_genes_near_position(organism, variant.chromosome, variant.position, window_bp)
+        genes, error = find_genes_near_position(organism, variant.chromosome, variant.position, window_bp, assembly=assembly)
 
         if error:
             stats.lookup_failed += 1
-            survivors.append(variant)
+            other_survivors.append(variant)
+            by_chromosome[variant.chromosome].append(variant)
         elif genes:
             stats.in_or_near_gene += 1
-            survivors.append(variant)
+            gene_names = {g.name for g in genes if g.name}
+            if priority_genes and (gene_names & priority_genes):
+                stats.priority_gene_matches += 1
+                priority_survivors.append(variant)
+            else:
+                other_survivors.append(variant)
+                by_chromosome[variant.chromosome].append(variant)
         else:
             stats.no_gene_nearby += 1
 
-        if max_investigated is not None and len(survivors) >= max_investigated:
+        stop_early = max_investigated is not None and len(other_survivors) >= max_investigated
+        if priority_genes is not None or stratify_by_chromosome:
+            stop_early = False  # need to see candidates from later chromosomes before selecting fairly
+        if stop_early:
             break
+
+    if stratify_by_chromosome and max_investigated is not None:
+        # Round-robin across chromosomes in the order first encountered —
+        # one candidate from each chromosome per pass, so a small budget
+        # still spreads across as many chromosomes as showed up, rather
+        # than exhausting itself on the first one.
+        chrom_order = list(by_chromosome.keys())
+        selected: list[CommonVariant] = []
+        idx = 0
+        while len(selected) < max_investigated and any(by_chromosome[c] for c in chrom_order):
+            chrom = chrom_order[idx % len(chrom_order)]
+            if by_chromosome[chrom]:
+                selected.append(by_chromosome[chrom].pop(0))
+            idx += 1
+        other_survivors = selected
+
+    if priority_genes is not None and max_investigated is not None:
+        remaining = max(0, max_investigated - len(priority_survivors))
+        survivors = priority_survivors + other_survivors[:remaining]
+    elif max_investigated is not None:
+        survivors = other_survivors[:max_investigated]
+    else:
+        survivors = priority_survivors + other_survivors
 
     return survivors, stats
 
@@ -290,16 +360,51 @@ def run_genome_pipeline(
     triage_window_bp: int = 100000,
     triage_max_checked: int = 2000,
     max_investigated: int = 15,
-    max_iterations_per_variant: int = 8,
+    # Was 8 — matches the exact number iterative_agent.py's own MAX_ITERATIONS
+    # comment documents as "too tight," the direct cause of the original
+    # "no conclusion reached" fallback bug. This call site kept the old
+    # default even after that fix, silently overriding investigate_variant's
+    # own (correct) default of 12 on every call that didn't pass this
+    # explicitly. Caught 2026-08-15 before a comprehensive run would have
+    # quietly re-triggered the same bug at scale.
+    max_iterations_per_variant: int = 12,
+    priority_genes: frozenset[str] | None = None,
+    checkpoint_path: str | None = None,
+    assembly_override: AssemblyInfo | None = None,
+    stratify_by_chromosome: bool = False,
     client=None,
 ) -> tuple[GenomeInput, AnalysisRun, CandidateScanStats, TriageStats]:
     """Defaults as of the tile-cache fix (2026-08-15): scanning 20,000
     markers now costs ~255s (was the bottleneck at ~0.56s/marker with no
     caching — 20,000 markers would've taken over 3 hours before). That's
     enough to reach multiple chromosomes, not just an early slice of chr1.
+
+    `priority_genes` (see triage_candidates_near_genes' docstring): passed
+    straight through so a run can guarantee investigation slots for named
+    genes of interest regardless of where in the file they fall.
+
+    `checkpoint_path`, added 2026-08-15 for long comprehensive runs: if
+    given, writes the run's current state to this path after EVERY
+    investigation completes, not just once at the end. Findings were
+    previously only written to disk after the entire survivors loop
+    finished — for a ~40-investigation, ~1.5-2 hour run, that meant a
+    truly fatal crash (outside the per-variant try/except above — e.g.
+    the process being killed) would lose everything already done, not
+    just the one in-flight investigation.
+
+    `assembly_override`, added 2026-08-15 — see
+    wildtype/tools/reference_genome.py's resolve_assembly_by_accession()
+    docstring for the full story: without this, the pipeline always uses
+    resolve_reference_assembly()'s pick, which is whatever NCBI currently
+    calls the species' "reference genome" — not necessarily the assembly
+    the INPUT FILE's coordinates were actually mapped to. Live-caught
+    2026-08-15: Ollie's Embark TPED is in CanFam3.1, NCBI's current pick
+    for dog is UU_Cfam_GSD_1.0 — completely different coordinate systems.
+    Pass an explicit AssemblyInfo (e.g. via resolve_assembly_by_accession)
+    once you've confirmed which assembly actually matches your input data.
     """
     genome_input = validate_genome_input(tped_path, tfam_path, species, organism)
-    assembly = resolve_reference_assembly(genome_input.organism)
+    assembly = assembly_override or resolve_reference_assembly(genome_input.organism)
 
     candidates, scan_stats = find_candidate_variants(
         tped_path,
@@ -318,18 +423,63 @@ def run_genome_pipeline(
         window_bp=triage_window_bp,
         max_investigated=max_investigated,
         max_checked=triage_max_checked,
+        priority_genes=priority_genes,
+        assembly=assembly,
+        stratify_by_chromosome=stratify_by_chromosome,
     )
 
     findings: list[RiskFinding] = []
     for variant in survivors:
-        finding = investigate_variant(
-            variant,
-            genome_input.organism,
-            assembly=assembly,
-            client=client,
-            max_iterations=max_iterations_per_variant,
-        )
+        # Per-variant isolation — live-caught 2026-08-15: without this, one
+        # unexpected exception partway through a long batch (e.g. investigation
+        # #35 of 40) would crash the whole run and lose every finding already
+        # gathered, since results are only written to disk at the very end.
+        # Same fix category already applied to the older Embark-CSV pipeline
+        # in agent/loop.py's run_pipeline — this call site never got it.
+        try:
+            finding = investigate_variant(
+                variant,
+                genome_input.organism,
+                assembly=assembly,
+                client=client,
+                max_iterations=max_iterations_per_variant,
+            )
+        except Exception as e:
+            a1, a2 = variant.genotype_alleles()
+            finding = RiskFinding(
+                id=f"RF-{variant.chromosome}-{variant.position}",
+                risk_factor="Investigation crashed before reaching a conclusion",
+                confidence=ConfidenceAssessment(
+                    level="insufficient_evidence",
+                    rationale=f"Unhandled {type(e).__name__} during investigation: {e}",
+                ),
+                variants=[VariantRef(
+                    chromosome=variant.chromosome, position=variant.position,
+                    reference=variant.reference, alternate=variant.alternate,
+                    genotype=f"{a1}/{a2}",
+                )],
+                genes=[],
+                biological_interpretation="",
+                evidence=EvidenceBundle(),
+                limitations=[f"Investigation raised an unhandled exception and was not completed: {type(e).__name__}: {e}"],
+            )
         findings.append(finding)
+
+        if checkpoint_path is not None:
+            partial_run = AnalysisRun(
+                sample_id=genome_input.individual.individual_id,
+                species=genome_input.species,
+                input_source="tped_tfam",
+                variants_analyzed=scan_stats.markers_scanned,
+                findings=findings,
+                scan_stats=asdict(scan_stats),
+                triage_stats=asdict(triage_stats),
+                assembly_used={"accession": assembly.accession, "name": assembly.name} if assembly else None,
+            )
+            try:
+                Path(checkpoint_path).write_text(json.dumps(partial_run.to_dict(), indent=2, default=str))
+            except Exception:
+                pass  # a failed checkpoint write shouldn't take down the run itself
 
     run = AnalysisRun(
         sample_id=genome_input.individual.individual_id,
@@ -339,6 +489,7 @@ def run_genome_pipeline(
         findings=findings,
         scan_stats=asdict(scan_stats),
         triage_stats=asdict(triage_stats),
+        assembly_used={"accession": assembly.accession, "name": assembly.name} if assembly else None,
     )
     return genome_input, run, scan_stats, triage_stats
 

@@ -321,7 +321,7 @@ def build_investigation_tools(species: str, organism: str, assembly: AssemblyInf
         """
         from wildtype.tools.gene_lookup import find_genes_near_position
 
-        genes, error = find_genes_near_position(organism, chromosome, position, window_bp)
+        genes, error = find_genes_near_position(organism, chromosome, position, window_bp, assembly=assembly)
         if error:
             result = {"error": error}
         elif not genes:
