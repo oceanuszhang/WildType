@@ -1,21 +1,44 @@
 # Core
-python-dotenv==1.0.1
+# python-dotenv/pydantic bumped by proto-tools' own pins below (was 1.0.1 /
+# 2.8.2) — kept in sync here so a fresh `pip install -r requirements.txt`
+# resolves in one pass instead of installing twice and downgrading.
+python-dotenv==1.2.2
 pandas==2.2.2
 requests==2.32.3
-pydantic==2.8.2
-certifi==2024.7.4
+pydantic==2.13.4
+certifi==2026.7.22  # was pinned to 2024.7.4 — caused SSL cert verify failures against modal.com
+
+# Proto (ESMFold, AlphaFold3, Evo1, ProteinMPNN, TM-align, UniProt) — no
+# PyPI package, installs from git. MCP-only, local stdio for now (no hosted
+# HTTPS server yet per Proto's own docs as of Aug 2026). Heavy tools need
+# either a local GPU or your own Modal credentials — see PROTO_* in .env.
+proto-tools[mcp] @ git+https://github.com/evo-design/proto-tools.git
 
 # Agent brain
-anthropic==0.34.2
+# 0.34.2 broke against the httpx proto-tools pulls in (passes a removed
+# `proxies` kwarg) — TypeError: Client.__init__() got an unexpected keyword
+# argument 'proxies'. Bumped to a version built against current httpx.
+anthropic==0.122.0
 
 # UI
-gradio==4.44.1  # 4.44.0 has a jinja2 template-cache bug that 500s every page load
-huggingface_hub==0.24.6  # pin: newer hub releases drop HfFolder, breaks gradio import
+# Pinned versions below are stale vs. what proto-tools' dependency chain
+# actually forces into this venv (gradio 6.24.0, huggingface_hub 1.27.0 as
+# of 2026-08-15). Verified live: `python -m wildtype.ui.app` serves HTTP 200
+# with no errors on that combo — the old 4.44.0 jinja2-cache bug and the
+# HfFolder-import break this pin guarded against don't apply anymore.
+# Re-pinning to what's confirmed working instead of fighting proto-tools.
+gradio==6.24.0
+huggingface_hub==1.27.0
 
 # Local ESM2 CPU fallback (tools/esm_local.py) — install tonight, weights
 # download once and cache; don't leave this for tomorrow's venue wifi.
 fair-esm==2.0.0
 torch==2.4.1
+
+# Benchling (structured storage) — needs a tenant URL + API key from a
+# Tenant Admin with Developer Platform access set to "Full"; self-serve
+# signup isn't a thing, this has to come from the hackathon org/sponsor.
+benchling-sdk==1.25.0
 
 # Tests
 pytest==8.3.2

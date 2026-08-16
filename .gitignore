@@ -3,6 +3,7 @@ __pycache__/
 *.pyc
 .venv/
 venv/
+.venv-biohub/
 *.egg-info/
 .pytest_cache/
 .DS_Store
@@ -10,3 +11,8 @@ venv/
 .cache/
 checkpoints/
 *.pt
+
+# machine-local tooling artifacts, not project source
+.agents/
+.claude/settings.local.json
+logs/

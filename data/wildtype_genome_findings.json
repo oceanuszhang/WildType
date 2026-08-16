@@ -1,0 +1,2804 @@
+{
+  "sample_id": "WG0700532-DNA_E11_31211050316783",
+  "species": "dog",
+  "input_source": "tped_tfam",
+  "variants_analyzed": 6130,
+  "generated_at": "2026-08-16T01:39:31.593260+00:00",
+  "findings": [
+    {
+      "id": "RF-1-68723",
+      "risk_factor": "Homozygous T>C substitution at chr1:68723 (dog), located within the ENPP1 gene locus, but with no evidence of functional impact",
+      "confidence": {
+        "level": "low",
+        "score": null,
+        "rationale": "The variant falls within the genomic span of ENPP1 (ectonucleotide pyrophosphatase/phosphodiesterase 1), a gene with well-documented disease relevance in humans (GACI, PXE, osteoporosis) and mice (ectopic ossification/ankylosis in Enpp1 mutant alleles). However: (1) no dog-specific literature was found linking this gene, or this locus in particular, to any canine phenotype; (2) the gene spans ~73kb (44145-117940) and nothing in the available annotation indicates this position (68723) falls in an exon, splice site, or known regulatory element rather than deep intron; (3) Evo2 scoring of the substitution gave a deviation of only -0.0078, essentially negligible \u2014 this is not the signature of a site under strong evolutionary constraint, arguing against a major functional/coding consequence; (4) no protein-level (amino acid) consequence could be assessed since no paper specifies a coding change at this position, and translating DNA position to protein position without exon/frame data would be an illegitimate guess per protocol."
+      },
+      "species_relevance": "different_species",
+      "variants": [
+        {
+          "chromosome": "1",
+          "position": 68723,
+          "reference": "T",
+          "alternate": "C",
+          "genotype": "C/C"
+        }
+      ],
+      "genes": [
+        "ENPP1"
+      ],
+      "biological_interpretation": "ENPP1 (in humans and mice) regulates extracellular pyrophosphate levels and calcification; loss-of-function variants cause ectopic mineralization disorders (GACI), pseudoxanthoma elasticum-like phenotypes, and dose-dependent osteoporosis. If this dog variant disrupted ENPP1 function similarly, one might hypothesize a predisposition to abnormal mineralization/bone phenotypes. However, the near-zero Evo2 deviation score suggests this specific nucleotide position is not strongly conserved/constrained in the surrounding sequence context, which is inconsistent with it being a critical functional (coding or splice-regulatory) site \u2014 more consistent with an intronic, likely functionally tolerated, position.",
+      "evidence": {
+        "foundation_models": [
+          {
+            "tool": "score_dna_variant_evo2",
+            "args": {
+              "chromosome": "1",
+              "position": 68723,
+              "reference_base_at_position": "T",
+              "alternate_allele": "C",
+              "window_start": 68623
+            },
+            "result": {
+              "evo2_deviation": -0.0078,
+              "model": "evo2_1b_base"
+            }
+          }
+        ],
+        "literature": [
+          {
+            "tool": "search_literature",
+            "args": {
+              "query": "ENPP1 dog variant disease"
+            },
+            "result": [
+              {
+                "title": "ENPP1  variants in patients with GACI and PXE expand the clinical and genetic heterogeneity of heritable disorders of ectopic calcification",
+                "doi": "10.1371/journal.pgen.1010192.r004",
+                "year": 2022,
+                "summary": "This study investigated *ENPP1* variants in patients with GACI and PXE. It found that *ENPP1* variants can cause both GACI and PXE, expanding the known genetic causes and challenging the sole role of plasma PPi in calcification severity.",
+                "source": "PLoS Genetics"
+              },
+              {
+                "title": "ENPP1 in Blood and Bone: Skeletal and Soft Tissue Diseases Induced by ENPP1 Deficiency",
+                "doi": "10.1146/annurev-pathmechdis-051222-121126",
+                "year": 2024,
+                "summary": "ENPP1 deficiency causes paradoxical mineralization, leading to vascular calcification and osteoporosis. A novel ENPP1 biologic is being developed to treat these disorders.",
+                "source": "Annual review of pathology"
+              },
+              {
+                "title": "A New  Enpp1  allele,\n Enpp1 ttw-Ham , Identified in\nan ICR Closed Colony",
+                "doi": "10.1538/expanim.63.193",
+                "year": 2014,
+                "summary": "A new allele of the Enpp1 gene, Enpp1 ttw-Ham, was identified in ICR mice exhibiting ankylosis and hypogrowth. This mutation disrupts Enpp1 function, leading to ectopic ossification and reduced NPPH activity.",
+                "source": "Experimental Animals"
+              },
+              {
+                "title": "ENPP1 deficiency: A clinical update on the relevance of individual variants using a locus\u2010specific patient database",
+                "doi": "10.1002/humu.24477",
+                "year": 2022,
+                "summary": "This paper reviews clinical and genetic findings of ENPP1 Deficiency using a patient database. A high percentage of identified variants were disease-causing, highlighting the need for a curated database to improve diagnosis.",
+                "source": "Human Mutation"
+              },
+              {
+                "title": "Human Heterozygous ENPP1 Deficiency Is Associated With Early Onset Osteoporosis, a Phenotype Recapitulated in a Mouse Model of Enpp1 Deficiency",
+                "doi": "10.1002/jbmr.3911",
+                "year": 2019,
+                "summary": "Heterozygous ENPP1 deficiency in humans was studied, revealing early onset osteoporosis with bone microarchitectural defects. This phenotype is recapitulated in a mouse model, indicating a gene dose effect of ENPP1 on bone health.",
+                "source": "Journal of Bone and Mineral Research"
+              }
+            ]
+          },
+          {
+            "tool": "search_literature",
+            "args": {
+              "query": "ENPP1 canine calcinosis circumscripta or ossification of ligamentum flavum dog"
+            },
+            "result": [
+              {
+                "title": "Pathomorphological features of calcinosis circumscripta in a dog",
+                "doi": "10.5625/lar.2016.32.1.74",
+                "year": 2016,
+                "summary": "A German Shepherd dog's footpad mass was examined histopathologically. The findings revealed widespread calcium deposits surrounded by inflammatory cells, consistent with calcinosis circumscripta.",
+                "source": "pmc"
+              },
+              {
+                "title": "Canine chondrodystrophic intervertebral disc disease (Hansen type I disc disease)",
+                "doi": "10.1186/1471-2474-16-S1-S11",
+                "year": 2015,
+                "summary": "",
+                "source": "pmc"
+              },
+              {
+                "title": "Isolated ligamentum flavum ossification in primary hypoparathyroidism",
+                "doi": "10.4103/sni.sni_364_17",
+                "year": 2018,
+                "summary": "This paper reports a case of isolated ligamentum flavum ossification causing myelopathy in a patient with hypoparathyroidism. The findings suggest hypoparathyroidism should be considered in myelopathy cases with ligamentum flavum ossification.",
+                "source": "pmc"
+              },
+              {
+                "title": "Tethered Cord Syndrome Associated with a Thickened Filum Terminale in a Dog",
+                "doi": "10.1111/jvim.12522",
+                "year": 2015,
+                "summary": "",
+                "source": "pmc"
+              },
+              {
+                "title": "Ossification of the ligamentum flavum",
+                "doi": "10.22603/ssrr.1.2016-0031",
+                "year": 2017,
+                "summary": "This paper discusses ossification of the ligamentum flavum, a condition causing neurological symptoms due to spinal cord compression. Early surgical intervention is recommended for severe cases, though residual symptoms may persist.",
+                "source": "pmc"
+              }
+            ]
+          }
+        ],
+        "genomic_databases": [
+          {
+            "tool": "search_genes_near_position",
+            "args": {
+              "chromosome": "1",
+              "position": 68723,
+              "window_bp": 100000
+            },
+            "result": {
+              "genes_found": 3,
+              "genes": [
+                {
+                  "name": "ENPP1",
+                  "description": "ectonucleotide pyrophosphatase/phosphodiesterase 1",
+                  "start": 117940,
+                  "stop": 44145,
+                  "variant_inside_gene_span": true
+                },
+                {
+                  "name": "LOC102151484",
+                  "description": "uncharacterized LOC102151484",
+                  "start": 124879,
+                  "stop": 121017,
+                  "variant_inside_gene_span": false
+                },
+                {
+                  "name": "LOC100685702",
+                  "description": "zinc finger RNA-binding protein-like",
+                  "start": 160574,
+                  "stop": 164311,
+                  "variant_inside_gene_span": false
+                }
+              ]
+            }
+          },
+          {
+            "tool": "search_gene_info",
+            "args": {
+              "gene_symbol": "ENPP1",
+              "organism": "Canis lupus familiaris"
+            },
+            "result": [
+              {
+                "name": "ENPP1",
+                "description": "ectonucleotide pyrophosphatase/phosphodiesterase 1",
+                "organism": "Canis lupus familiaris",
+                "summary": ""
+              },
+              {
+                "name": "ENPP1",
+                "description": "ectonucleotide pyrophosphatase/phosphodiesterase 1",
+                "organism": "Canis lupus familiaris",
+                "summary": ""
+              },
+              {
+                "name": "ENPP1",
+                "description": "ectonucleotide pyrophosphatase/phosphodiesterase 1",
+                "organism": "Canis lupus familiaris",
+                "summary": ""
+              }
+            ]
+          },
+          {
+            "tool": "fetch_reference_sequence",
+            "args": {
+              "chromosome": "1",
+              "position": 68723
+            },
+            "result": {
+              "sequence": "TAGATCCTTTAAGTATGATGTGTCTCTCTTCATCTCTCATTTCAGTCTTCGGGGTAAATTTTAGTTTATCTGATATAAGGATGGCTACCCCTGCTTTCTTTTGAGGACCGTTTGAATGGTAAATGGTTCTCCAAACTTTTATTTTCAGGCTGTAGGTGTTCTTCTGTCTAAAATGAGTCTCTTGTAGACAGCAAATAGATG",
+              "window_start": 68623,
+              "accession": "NC_049222.1"
+            }
+          }
+        ],
+        "species_specific": []
+      },
+      "limitations": [
+        "No dog-specific (Canis lupus familiaris) literature found describing ENPP1 variants or this locus in relation to any canine disease phenotype.",
+        "Disease associations for ENPP1 (GACI, PXE, osteoporosis) are drawn from human and mouse studies, not dogs \u2014 cross-species extrapolation is uncertain.",
+        "Exon/intron structure and reading frame at this exact position were not available, so it could not be determined whether the variant is coding, intronic, or regulatory; per protocol, no amino-acid-level scoring was attempted since no paper specifies a protein consequence.",
+        "Evo2 deviation score (-0.0078) is very small, arguing against strong functional impact, but this is a computational deviation metric, not a validated pathogenicity score or disease probability.",
+        "Homozygosity (C/C) increases plausibility of phenotypic exposure if the variant were functional, but functional evidence itself is lacking."
+      ],
+      "agent_summary": "This variant sits inside the boundaries of the ENPP1 gene, which in humans and mice is linked to disorders of calcification and bone health when mutated. However, computational modeling (Evo2) shows almost no predicted functional deviation at this exact spot, and no dog-specific studies tie this gene or position to any known disease in dogs. Overall, this looks like a low-risk, likely non-functional variant, but evidence is limited."
+    },
+    {
+      "id": "RF-1-80040",
+      "risk_factor": "Homozygous T>C substitution at chr1:80040 falls within the ENPP1 gene span (canine chromosome 1, positions ~44,145\u2013117,940), but no evidence that this specific position is coding or otherwise functionally critical.",
+      "confidence": {
+        "level": "low",
+        "score": null,
+        "rationale": "The variant lies within the boundaries of the ENPP1 gene (search_genes_near_position confirms variant_inside_gene_span=true), and ENPP1 is a well-documented gene in human and mouse literature associated with ectopic calcification disorders (GACI, PXE) and osteoporosis. However: (1) no dog-specific literature on ENPP1 variants or disease was found despite searching; (2) there is no exon/intron annotation tool available here, so it cannot be determined whether position 80040 falls in a coding exon, intron, or regulatory region \u2014 the fetched 200bp reference window shows no obvious start codon, splice motif, or other landmark that would confirm coding relevance; (3) the Evo2 deviation score for the T>C substitution was very small (-0.0228), which does not suggest a strongly disfavored/disruptive sequence change relative to reference, though this is a general sequence-likelihood model and not a clinical predictor; (4) no protein-level consequence (e.g., specific amino acid change) has been reported in any retrieved paper, so ESM2 protein scoring could not be legitimately performed per protocol (position would have to be guessed from DNA coordinates, which is disallowed without exon-boundary data)."
+      },
+      "species_relevance": "different_species",
+      "variants": [
+        {
+          "chromosome": "1",
+          "position": 80040,
+          "reference": "T",
+          "alternate": "C",
+          "genotype": "C/C"
+        }
+      ],
+      "genes": [
+        "ENPP1"
+      ],
+      "biological_interpretation": "ENPP1 (ectonucleotide pyrophosphatase/phosphodiesterase 1) generates inorganic pyrophosphate (PPi), which inhibits pathological mineralization; loss-of-function variants in humans and mice cause generalized arterial calcification of infancy (GACI), pseudoxanthoma elasticum-like ectopic calcification, and early-onset osteoporosis (heterozygous carriers). If this dog variant disrupted ENPP1 function similarly, a plausible mechanism would be dysregulated pyrophosphate metabolism affecting bone/vascular mineralization. However, this variant's location within the gene span does not by itself establish it disrupts a coding exon or splice site, and the near-zero Evo2 deviation score does not support strong functional disruption at the sequence level.",
+      "evidence": {
+        "foundation_models": [
+          {
+            "tool": "score_dna_variant_evo2",
+            "args": {
+              "chromosome": "1",
+              "position": 80040,
+              "reference_base_at_position": "T",
+              "alternate_allele": "C",
+              "window_start": 79940
+            },
+            "result": {
+              "evo2_deviation": -0.0228,
+              "model": "evo2_1b_base"
+            }
+          }
+        ],
+        "literature": [
+          {
+            "tool": "search_literature",
+            "args": {
+              "query": "ENPP1 dog variant disease"
+            },
+            "result": [
+              {
+                "title": "ENPP1  variants in patients with GACI and PXE expand the clinical and genetic heterogeneity of heritable disorders of ectopic calcification",
+                "doi": "10.1371/journal.pgen.1010192.r004",
+                "year": 2022,
+                "summary": "This study investigated *ENPP1* variants in patients with GACI and PXE. It found that *ENPP1* variants can cause both GACI and PXE, expanding the known genetic causes and challenging the sole role of plasma PPi in calcification severity.",
+                "source": "PLoS Genetics"
+              },
+              {
+                "title": "ENPP1 in Blood and Bone: Skeletal and Soft Tissue Diseases Induced by ENPP1 Deficiency",
+                "doi": "10.1146/annurev-pathmechdis-051222-121126",
+                "year": 2024,
+                "summary": "ENPP1 deficiency causes paradoxical mineralization, leading to vascular calcification and osteoporosis. A novel ENPP1 biologic is being developed to treat these disorders.",
+                "source": "Annual review of pathology"
+              },
+              {
+                "title": "A New  Enpp1  allele,\n Enpp1 ttw-Ham , Identified in\nan ICR Closed Colony",
+                "doi": "10.1538/expanim.63.193",
+                "year": 2014,
+                "summary": "A new allele of the Enpp1 gene, Enpp1 ttw-Ham, was identified in ICR mice exhibiting ankylosis and hypogrowth. This mutation disrupts Enpp1 function, leading to ectopic ossification and reduced NPPH activity.",
+                "source": "Experimental Animals"
+              },
+              {
+                "title": "ENPP1 deficiency: A clinical update on the relevance of individual variants using a locus\u2010specific patient database",
+                "doi": "10.1002/humu.24477",
+                "year": 2022,
+                "summary": "This paper reviews clinical and genetic findings of ENPP1 Deficiency using a patient database. A high percentage of identified variants were disease-causing, highlighting the need for a curated database to improve diagnosis.",
+                "source": "Human Mutation"
+              },
+              {
+                "title": "Human Heterozygous ENPP1 Deficiency Is Associated With Early Onset Osteoporosis, a Phenotype Recapitulated in a Mouse Model of Enpp1 Deficiency",
+                "doi": "10.1002/jbmr.3911",
+                "year": 2019,
+                "summary": "Heterozygous ENPP1 deficiency in humans was studied, revealing early onset osteoporosis with bone microarchitectural defects. This phenotype is recapitulated in a mouse model, indicating a gene dose effect of ENPP1 on bone health.",
+                "source": "Journal of Bone and Mineral Research"
+              }
+            ]
+          },
+          {
+            "tool": "search_literature",
+            "args": {
+              "query": "ENPP1 canine calcification breed"
+            },
+            "result": [
+              {
+                "title": "Mutant  Enpp1 asj  mice as a model for generalized arterial calcification of infancy",
+                "doi": "10.1242/dmm.012765",
+                "year": 2013,
+                "summary": "The study investigated the 'ages with stiffened joints' (asj) mouse, which has a mutation in the Enpp1 gene. These mice exhibit generalized arterial calcification and reduced pyrophosphate levels, making them a suitable model for human GACI.",
+                "source": "Disease Models & Mechanisms"
+              },
+              {
+                "title": "ENPP1  variants in patients with GACI and PXE expand the clinical and genetic heterogeneity of heritable disorders of ectopic calcification",
+                "doi": "10.1371/journal.pgen.1010192.r004",
+                "year": 2022,
+                "summary": "This study investigated *ENPP1* variants in patients with GACI and PXE. It found that *ENPP1* variants can cause both GACI and PXE, expanding the known genetic causes and challenging the sole role of plasma PPi in calcification severity.",
+                "source": "PLoS Genetics"
+              },
+              {
+                "title": "Spontaneous  asj-2J  Mutant Mouse as a Model for Generalized Arterial Calcification of Infancy: A Large Deletion/Insertion Mutation in the  Enpp1  Gene",
+                "doi": "10.1371/journal.pone.0113542",
+                "year": 2014,
+                "summary": "A spontaneous mutant mouse, asj-2J, was characterized as a model for Generalized Arterial Calcification of Infancy. This mouse exhibits a large deletion/insertion mutation in the Enpp1 gene, leading to extensive arterial calcification.",
+                "source": "PLoS ONE"
+              },
+              {
+                "title": "A New  Enpp1  allele,\n Enpp1 ttw-Ham , Identified in\nan ICR Closed Colony",
+                "doi": "10.1538/expanim.63.193",
+                "year": 2014,
+                "summary": "A new allele of the Enpp1 gene, Enpp1 ttw-Ham, was identified in ICR mice exhibiting ankylosis and hypogrowth. This mutation disrupts Enpp1 function, leading to ectopic ossification and reduced NPPH activity.",
+                "source": "Experimental Animals"
+              },
+              {
+                "title": "ENPP1 in Blood and Bone: Skeletal and Soft Tissue Diseases Induced by ENPP1 Deficiency",
+                "doi": "10.1146/annurev-pathmechdis-051222-121126",
+                "year": 2024,
+                "summary": "ENPP1 deficiency causes paradoxical mineralization, leading to vascular calcification and osteoporosis. A novel ENPP1 biologic is being developed to treat these disorders.",
+                "source": "Annual review of pathology"
+              }
+            ]
+          }
+        ],
+        "genomic_databases": [
+          {
+            "tool": "search_genes_near_position",
+            "args": {
+              "chromosome": "1",
+              "position": 80040,
+              "window_bp": 100000
+            },
+            "result": {
+              "genes_found": 3,
+              "genes": [
+                {
+                  "name": "ENPP1",
+                  "description": "ectonucleotide pyrophosphatase/phosphodiesterase 1",
+                  "start": 117940,
+                  "stop": 44145,
+                  "variant_inside_gene_span": true
+                },
+                {
+                  "name": "LOC102151484",
+                  "description": "uncharacterized LOC102151484",
+                  "start": 124879,
+                  "stop": 121017,
+                  "variant_inside_gene_span": false
+                },
+                {
+                  "name": "LOC100685702",
+                  "description": "zinc finger RNA-binding protein-like",
+                  "start": 160574,
+                  "stop": 164311,
+                  "variant_inside_gene_span": false
+                }
+              ]
+            }
+          },
+          {
+            "tool": "search_gene_info",
+            "args": {
+              "gene_symbol": "ENPP1",
+              "organism": "Canis lupus familiaris"
+            },
+            "result": [
+              {
+                "name": "ENPP1",
+                "description": "ectonucleotide pyrophosphatase/phosphodiesterase 1",
+                "organism": "Canis lupus familiaris",
+                "summary": ""
+              },
+              {
+                "name": "ENPP1",
+                "description": "ectonucleotide pyrophosphatase/phosphodiesterase 1",
+                "organism": "Canis lupus familiaris",
+                "summary": ""
+              },
+              {
+                "name": "ENPP1",
+                "description": "ectonucleotide pyrophosphatase/phosphodiesterase 1",
+                "organism": "Canis lupus familiaris",
+                "summary": ""
+              }
+            ]
+          },
+          {
+            "tool": "fetch_reference_sequence",
+            "args": {
+              "chromosome": "1",
+              "position": 80040
+            },
+            "result": {
+              "sequence": "TCTAGTGTTGGTGGTTATTTCCCTTTTCTCAGATGTGATTTTATTTGGGTCCTTTCTCATCTTTTTATCTTTTTTCTTTTTTAAAGATTTTACTTATGTATTCATGAGAGACACAGAGATGCATAGGTCTATAGGCACAGGGAAAATGAGGCTCTATGCGGGGAGCCTGATGTGGGACTTGATTCCCGAGGACCCCGGGTT",
+              "window_start": 79940,
+              "accession": "NC_049222.1"
+            }
+          }
+        ],
+        "species_specific": []
+      },
+      "limitations": [
+        "[\"No exon/intron/reading-frame annotation tool was available to confirm whether position 80040 is coding, intronic, or regulatory within ENPP1.\", \"No dog-specific (Canis lupus familiaris) literature on ENPP1 variants or associated phenotypes was found; all disease-association evidence retrieved is from human and mouse studies.\", \"No paper reporting a protein-level (amino acid) consequence for this exact variant was found, so ESM2 protein-level scoring could not be performed per protocol (position cannot be legitimately inferred from DNA coordinates alone).\", \"Evo2 deviation score (-0.0228) is a sequence-likelihood metric, not a validated pathogenicity or disease-probability score.\", \"Zygosity is homozygous alt (C/C), which could reflect either a breed-fixed benign polymorphism or a homozygous risk allele; no population allele-frequency data was available to distinguish these.\"]",
+        "Agent called create_risk_finding without an agent_summary \u2014 falling back to risk_factor as the closest available summary."
+      ],
+      "agent_summary": "Homozygous T>C substitution at chr1:80040 falls within the ENPP1 gene span (canine chromosome 1, positions ~44,145\u2013117,940), but no evidence that this specific position is coding or otherwise functionally critical."
+    },
+    {
+      "id": "RF-1-177110",
+      "risk_factor": "Intergenic T>G variant on chr1:177110 (dog), ~59 kb from ENPP1 and ~13 kb from an uncharacterized zinc-finger RNA-binding protein-like locus (LOC100685702); not located within any annotated gene",
+      "confidence": {
+        "level": "insufficient_evidence",
+        "score": null,
+        "rationale": "The variant does not fall within the coding or intronic span of any annotated gene \u2014 the nearest genes (ENPP1, LOC102151484, LOC100685782, LOC100685702) are all tens of kilobases away, with ENPP1 being the closest functionally characterized gene (~59 kb from its gene body). Evo2 scoring of the variant itself returned a near-zero deviation (-0.0217), which does not suggest a strong disruption to local sequence context/regulatory function, though this is a coarse computational measure and not a functional assay. Literature search found strong evidence that ENPP1 loss-of-function coding variants cause arterial calcification disorders (GACI) in humans and mice, but no evidence connects this specific intergenic locus (or any regulatory element there) to ENPP1 expression or to any phenotype in dogs specifically. No dog-specific literature on this exact position was found."
+      },
+      "species_relevance": "different_species",
+      "variants": [
+        {
+          "chromosome": "1",
+          "position": 177110,
+          "reference": "T",
+          "alternate": "G",
+          "genotype": "G/G"
+        }
+      ],
+      "genes": [
+        "ENPP1",
+        "LOC100685702",
+        "LOC102151484",
+        "LOC100685782"
+      ],
+      "biological_interpretation": "If this variant has any effect, the most plausible (but unsubstantiated) hypothesis would be a distal regulatory influence on ENPP1 (implicated in ectopic/arterial calcification in humans and mice) given genomic proximity, but there is no direct evidence (e.g., eQTL, conserved regulatory annotation, or dog-specific study) supporting that this position is functional. The low Evo2 deviation score argues against a strong sequence-level disruption at this exact base.",
+      "evidence": {
+        "foundation_models": [
+          {
+            "tool": "score_dna_variant_evo2",
+            "args": {
+              "chromosome": "1",
+              "position": 177110,
+              "reference_base_at_position": "T",
+              "alternate_allele": "G",
+              "window_start": 177010
+            },
+            "result": {
+              "evo2_deviation": -0.0217,
+              "model": "evo2_1b_base"
+            }
+          }
+        ],
+        "literature": [
+          {
+            "tool": "search_literature",
+            "args": {
+              "query": "ENPP1 dog variant arterial calcification"
+            },
+            "result": [
+              {
+                "title": "ENPP1-Fc prevents neointima formation in generalized arterial calcification of infancy through the generation of AMP",
+                "doi": "10.1038/s12276-018-0163-5",
+                "year": 2018,
+                "summary": "This study investigated ENPP1 deficiency in Generalized Arterial Calcification of Infancy (GACI) and tested a recombinant protein treatment. The findings show ENPP1 prevents arterial stenosis by generating AMP, and the recombinant protein effectively treated it in a mouse model.",
+                "source": "Experimental & Molecular Medicine"
+              },
+              {
+                "title": "Mutant  Enpp1 asj  mice as a model for generalized arterial calcification of infancy",
+                "doi": "10.1242/dmm.012765",
+                "year": 2013,
+                "summary": "The study investigated the 'ages with stiffened joints' (asj) mouse, which has a mutation in the Enpp1 gene. These mice exhibit generalized arterial calcification and reduced pyrophosphate levels, making them a suitable model for human GACI.",
+                "source": "Disease Models & Mechanisms"
+              },
+              {
+                "title": "ENPP1-Fc prevents mortality and vascular calcifications in rodent model of generalized arterial calcification of infancy",
+                "doi": "10.1038/ncomms10006",
+                "year": 2015,
+                "summary": "This study investigated the efficacy of ENPP1-Fc in a rodent model of generalized arterial calcification of infancy. ENPP1-Fc administration prevented mortality and vascular calcifications, suggesting therapeutic potential for ectopic vascular calcification diseases.",
+                "source": "Nature Communications"
+              },
+              {
+                "title": "ENPP1 enzyme replacement therapy improves blood pressure and cardiovascular function in a mouse model of generalized arterial calcification of infancy",
+                "doi": "10.1242/dmm.035691",
+                "year": 2018,
+                "summary": "This study tested recombinant human ENPP1 protein therapy in a mouse model of Generalized Arterial Calcification of Infancy. The therapy significantly reduced arterial calcification and improved blood pressure and cardiovascular function.",
+                "source": "Disease Models & Mechanisms"
+              },
+              {
+                "title": "ENPP1  variants in patients with GACI and PXE expand the clinical and genetic heterogeneity of heritable disorders of ectopic calcification",
+                "doi": "10.1371/journal.pgen.1010192.r004",
+                "year": 2022,
+                "summary": "This study investigated *ENPP1* variants in patients with GACI and PXE. It found that *ENPP1* variants can cause both GACI and PXE, expanding the known genetic causes and challenging the sole role of plasma PPi in calcification severity.",
+                "source": "PLoS Genetics"
+              }
+            ]
+          },
+          {
+            "tool": "search_literature",
+            "args": {
+              "query": "canine intergenic variant chromosome 1 177110"
+            },
+            "result": [
+              {
+                "title": "Whole Genome Sequencing Reveals Multiple Linked Genetic Variants on Canine Chromosome 12 Associated with Risk for Symmetrical Lupoid Onychodystrophy (SLO) in the Bearded Collie",
+                "doi": "10.3390/genes12081265",
+                "year": 2021,
+                "summary": "Whole genome sequencing identified genetic variants on canine chromosome 12 linked to symmetrical lupoid onychodystrophy (SLO) in Bearded Collies. These variants, often with predicted damaging effects, are strongly associated with risk and may be linked to DLA class II risk haplotypes.",
+                "source": "pmc"
+              },
+              {
+                "title": "Canine Multiple System Degeneration Associated with Sequence Variants in  SERAC1",
+                "doi": "10.3390/genes15111378",
+                "year": 2024,
+                "summary": "Canine multiple system degeneration (CMSD) was studied in two breeds, with whole-genome sequencing identifying variants in the SERAC1 gene. These SERAC1 variants are strongly associated with the disease and suggest CMSD as a model for human SERAC1-deficiency disorders.",
+                "source": "Genes"
+              },
+              {
+                "title": "Intronic variant in  POU1F1  associated with canine pituitary dwarfism",
+                "doi": "10.1007/s00439-021-02259-2",
+                "year": 2021,
+                "summary": "A study investigated canine pituitary dwarfism in Karelian Bear Dogs, identifying a specific intronic variant in the POU1F1 gene. This variant is strongly associated with the condition and likely affects gene splicing.",
+                "source": "pmc"
+              },
+              {
+                "title": "A Point Mutation in a lincRNA Upstream of  GDNF  Is Associated to a Canine Insensitivity to Pain: A Spontaneous Model for Human Sensory Neuropathies",
+                "doi": "10.1371/journal.pgen.1006482",
+                "year": 2016,
+                "summary": "A point mutation in a lincRNA upstream of GDNF was identified in sporting dogs with pain insensitivity. This mutation alters regulatory element binding, decreasing GDNF and GDNF-AS expression, and creating a model for human neuropathies.",
+                "source": "PLoS Genetics"
+              },
+              {
+                "title": "Disruption of chromosome 11 in canine fibrosarcomas highlights an unusual variability of  CDKN2B  in dogs",
+                "doi": "10.1186/1746-6148-5-27",
+                "year": 2009,
+                "summary": "This study investigated chromosome 11 alterations in canine fibrosarcomas. Complex rearrangements and loss of tumor suppressor genes, including a highly variable *CDKN2B* gene, were found.",
+                "source": "BMC Veterinary Research"
+              }
+            ]
+          }
+        ],
+        "genomic_databases": [
+          {
+            "tool": "search_genes_near_position",
+            "args": {
+              "chromosome": "1",
+              "position": 177110,
+              "window_bp": 100000
+            },
+            "result": {
+              "genes_found": 4,
+              "genes": [
+                {
+                  "name": "ENPP1",
+                  "description": "ectonucleotide pyrophosphatase/phosphodiesterase 1",
+                  "start": 117940,
+                  "stop": 44145,
+                  "variant_inside_gene_span": false
+                },
+                {
+                  "name": "LOC102151484",
+                  "description": "uncharacterized LOC102151484",
+                  "start": 124879,
+                  "stop": 121017,
+                  "variant_inside_gene_span": false
+                },
+                {
+                  "name": "LOC100685782",
+                  "description": "ectonucleotide pyrophosphatase/phosphodiesterase family member 3-like",
+                  "start": 237323,
+                  "stop": 193633,
+                  "variant_inside_gene_span": false
+                },
+                {
+                  "name": "LOC100685702",
+                  "description": "zinc finger RNA-binding protein-like",
+                  "start": 160574,
+                  "stop": 164311,
+                  "variant_inside_gene_span": false
+                }
+              ]
+            }
+          },
+          {
+            "tool": "search_gene_info",
+            "args": {
+              "gene_symbol": "ENPP1",
+              "organism": "Canis lupus familiaris"
+            },
+            "result": [
+              {
+                "name": "ENPP1",
+                "description": "ectonucleotide pyrophosphatase/phosphodiesterase 1",
+                "organism": "Canis lupus familiaris",
+                "summary": ""
+              },
+              {
+                "name": "ENPP1",
+                "description": "ectonucleotide pyrophosphatase/phosphodiesterase 1",
+                "organism": "Canis lupus familiaris",
+                "summary": ""
+              },
+              {
+                "name": "ENPP1",
+                "description": "ectonucleotide pyrophosphatase/phosphodiesterase 1",
+                "organism": "Canis lupus familiaris",
+                "summary": ""
+              }
+            ]
+          },
+          {
+            "tool": "search_gene_info",
+            "args": {
+              "gene_symbol": "LOC100685702",
+              "organism": "Canis lupus familiaris"
+            },
+            "result": [
+              {
+                "name": "LOC100685702",
+                "description": "zinc finger RNA-binding protein-like",
+                "organism": "Canis lupus familiaris",
+                "summary": ""
+              }
+            ]
+          }
+        ],
+        "species_specific": []
+      },
+      "limitations": [
+        "Variant is intergenic and not within any annotated gene span, making functional interpretation speculative.",
+        "No dog-specific literature or regulatory annotation (e.g., promoter/enhancer marks) was available to assess whether this locus has any regulatory role on nearby genes.",
+        "Evo2 score is a general sequence-likelihood deviation, not a validated pathogenicity predictor, and was computed with the default 1b base model only.",
+        "No protein-level consequence applicable since variant is non-coding; ESM2 scoring was not applicable/attempted.",
+        "Homozygosity of the alt allele was noted but allele frequency in the broader dog population/breed was not assessed here."
+      ],
+      "agent_summary": "This variant sits in a gene desert, well outside any known gene (nearest annotated gene is ~13 kb away, and ENPP1 \u2014 a gene linked to arterial calcification disease in humans and mice \u2014 is about 59 kb away). Computational scoring of the DNA sequence itself showed minimal predicted disruption. There is no direct evidence in dogs or elsewhere that this specific position affects gene function or disease risk, so this should be considered a variant of uncertain/unlikely significance rather than a confirmed risk factor."
+    },
+    {
+      "id": "RF-1-212740",
+      "risk_factor": "No significant risk factor identified",
+      "confidence": {
+        "level": "insufficient_evidence",
+        "score": null,
+        "rationale": "The variant (chr1:212740, T>G, homozygous) falls within the span of LOC100685782, an uncharacterized/predicted gene annotated only as 'ectonucleotide pyrophosphatase/phosphodiesterase family member 3-like' (ENPP3-like) in the dog reference genome \u2014 it does not overlap the nearby, better-characterized ENPP1 gene (which starts ~100kb away and does not span this position). No dog-specific (or any-species) literature describes this locus, this predicted gene, or a phenotype linked to it. Literature retrieved on ENPP1 (mouse/human ankylosis, ectopic ossification, arterial calcification, osteoporosis) is not applicable since the variant does not fall within ENPP1 itself. The Evo2 genomic language model deviation score was essentially zero (-0.0002), indicating this substitution is not flagged as unusual/deleterious relative to the reference context, though this is a computational likelihood score, not a disease probability. No protein-level (missense) annotation is available for this locus, so ESM2 protein scoring could not be legitimately performed (would require exon/frame/paper-stated amino acid change, none of which exists here)."
+      },
+      "species_relevance": "unknown",
+      "variants": [
+        {
+          "chromosome": "1",
+          "position": 212740,
+          "reference": "T",
+          "alternate": "G",
+          "genotype": "G/G"
+        }
+      ],
+      "genes": [
+        "LOC100685782"
+      ],
+      "biological_interpretation": "The variant sits within an uncharacterized, computationally-predicted gene model (LOC100685782) with sequence similarity to ENPP3, not within the well-studied ENPP1 gene despite regional proximity on canine chromosome 1. Evo2 modeling shows negligible deviation from reference expectation at this position, arguing against a strong functional/regulatory disruption, though the model's resolution for intronic/regulatory effects in an uncharacterized locus is limited. Without gene function data, expression data, or breed/phenotype association studies for LOC100685782 in dogs, no mechanism linking this variant to disease can be established.",
+      "evidence": {
+        "foundation_models": [
+          {
+            "tool": "score_dna_variant_evo2",
+            "args": {
+              "chromosome": "1",
+              "position": 212740,
+              "reference_base_at_position": "T",
+              "alternate_allele": "G",
+              "window_start": 212640
+            },
+            "result": {
+              "evo2_deviation": -0.0002,
+              "model": "evo2_1b_base"
+            }
+          }
+        ],
+        "literature": [
+          {
+            "tool": "search_literature",
+            "args": {
+              "query": "ENPP3 dog variant disease"
+            },
+            "result": [
+              {
+                "title": "AKNA  Frameshift Variant in Three Dogs with Recurrent Inflammatory Pulmonary Disease",
+                "doi": "10.3390/genes10080567",
+                "year": 2019,
+                "summary": "Three related dogs with recurrent inflammatory pulmonary disease were studied for genetic causes. A frameshift variant in the AKNA gene was identified as the likely cause of the disease.",
+                "source": "pmc"
+              },
+              {
+                "title": "A Nonsense Variant in  COL6A1  in Landseer Dogs with Muscular Dystrophy",
+                "doi": "10.1534/g3.115.021923",
+                "year": 2015,
+                "summary": "A novel canine muscular dystrophy in Landseer dogs was studied. A nonsense variant in the COL6A1 gene was identified as the likely cause, creating a model for human Ullrich congenital muscular dystrophy.",
+                "source": "G3: Genes|Genomes|Genetics"
+              },
+              {
+                "title": "Frameshift Variant in  AMPD2  in Cirneco dell\u2019Etna Dogs with Retinopathy and Tremors",
+                "doi": "10.3390/genes15020238",
+                "year": 2024,
+                "summary": "A frameshift variant in the canine *AMPD2* gene was identified in Cirneco dell'Etna dogs with retinopathy and tremors. This variant is associated with a novel oculo-neurological syndrome in the breed.",
+                "source": "Genes"
+              },
+              {
+                "title": "A splice site variant in  INPP5E  causes diffuse cystic renal dysplasia and hepatic fibrosis in dogs",
+                "doi": "10.1371/journal.pone.0204073",
+                "year": 2018,
+                "summary": "A splice site variant in the INPP5E gene was identified in Norwich Terriers with diffuse cystic renal disease and hepatic fibrosis. This variant is concluded to be the cause of this lethal ciliopathy, enabling genetic testing for eradication.",
+                "source": "PLoS ONE"
+              },
+              {
+                "title": "SGCD  Missense Variant in a Lagotto Romagnolo Dog with Autosomal Recessively Inherited Limb-Girdle Muscular Dystrophy",
+                "doi": "10.3390/genes14081641",
+                "year": 2023,
+                "summary": "A Lagotto Romagnolo dog with progressive muscular dystrophy was studied. A homozygous missense variant in the SGCD gene was identified as the likely cause of the disease.",
+                "source": "pmc"
+              }
+            ]
+          },
+          {
+            "tool": "search_literature",
+            "args": {
+              "query": "ENPP1 dog gene ossification disease"
+            },
+            "result": [
+              {
+                "title": "A New  Enpp1  allele,\n Enpp1 ttw-Ham , Identified in\nan ICR Closed Colony",
+                "doi": "10.1538/expanim.63.193",
+                "year": 2014,
+                "summary": "A new allele of the Enpp1 gene, Enpp1 ttw-Ham, was identified in ICR mice exhibiting ankylosis and hypogrowth. This mutation disrupts Enpp1 function, leading to ectopic ossification and reduced NPPH activity.",
+                "source": "Experimental Animals"
+              },
+              {
+                "title": "Human Heterozygous ENPP1 Deficiency Is Associated With Early Onset Osteoporosis, a Phenotype Recapitulated in a Mouse Model of Enpp1 Deficiency",
+                "doi": "10.1002/jbmr.3911",
+                "year": 2019,
+                "summary": "Heterozygous ENPP1 deficiency in humans was studied, revealing early onset osteoporosis with bone microarchitectural defects. This phenotype is recapitulated in a mouse model, indicating a gene dose effect of ENPP1 on bone health.",
+                "source": "Journal of Bone and Mineral Research"
+              },
+              {
+                "title": "ENPP1 in Blood and Bone: Skeletal and Soft Tissue Diseases Induced by ENPP1 Deficiency",
+                "doi": "10.1146/annurev-pathmechdis-051222-121126",
+                "year": 2024,
+                "summary": "ENPP1 deficiency causes paradoxical mineralization, leading to vascular calcification and osteoporosis. A novel ENPP1 biologic is being developed to treat these disorders.",
+                "source": "Annual review of pathology"
+              },
+              {
+                "title": "Mutant  Enpp1 asj  mice as a model for generalized arterial calcification of infancy",
+                "doi": "10.1242/dmm.012765",
+                "year": 2013,
+                "summary": "The study investigated the 'ages with stiffened joints' (asj) mouse, which has a mutation in the Enpp1 gene. These mice exhibit generalized arterial calcification and reduced pyrophosphate levels, making them a suitable model for human GACI.",
+                "source": "Disease Models & Mechanisms"
+              },
+              {
+                "title": "Enpp1 mutations promote upregulation of hedgehog signaling in heterotopic ossification with aging",
+                "doi": "10.1007/s00774-024-01543-1",
+                "year": 2024,
+                "summary": "Enpp1 deficiency was studied in a novel mouse model, revealing progressive heterotopic ossification and joint degeneration. This ossification is linked to enhanced hedgehog signaling and fibroblast senescence, worsening with age.",
+                "source": "pmc"
+              }
+            ]
+          }
+        ],
+        "genomic_databases": [
+          {
+            "tool": "search_genes_near_position",
+            "args": {
+              "chromosome": "1",
+              "position": 212740,
+              "window_bp": 100000
+            },
+            "result": {
+              "genes_found": 6,
+              "genes": [
+                {
+                  "name": "ENPP1",
+                  "description": "ectonucleotide pyrophosphatase/phosphodiesterase 1",
+                  "start": 117940,
+                  "stop": 44145,
+                  "variant_inside_gene_span": false
+                },
+                {
+                  "name": "PARD6G",
+                  "description": "par-6 family cell polarity regulator gamma",
+                  "start": 284303,
+                  "stop": 365293,
+                  "variant_inside_gene_span": false
+                },
+                {
+                  "name": "LOC102151484",
+                  "description": "uncharacterized LOC102151484",
+                  "start": 124879,
+                  "stop": 121017,
+                  "variant_inside_gene_span": false
+                },
+                {
+                  "name": "LOC119870691",
+                  "description": "basic proline-rich protein-like",
+                  "start": 284400,
+                  "stop": 283810,
+                  "variant_inside_gene_span": false
+                },
+                {
+                  "name": "LOC100685782",
+                  "description": "ectonucleotide pyrophosphatase/phosphodiesterase family member 3-like",
+                  "start": 237323,
+                  "stop": 193633,
+                  "variant_inside_gene_span": true
+                },
+                {
+                  "name": "LOC100685702",
+                  "description": "zinc finger RNA-binding protein-like",
+                  "start": 160574,
+                  "stop": 164311,
+                  "variant_inside_gene_span": false
+                }
+              ]
+            }
+          },
+          {
+            "tool": "search_gene_info",
+            "args": {
+              "gene_symbol": "ENPP3",
+              "organism": "Canis lupus familiaris"
+            },
+            "result": [
+              {
+                "name": "ENPP3",
+                "description": "ectonucleotide pyrophosphatase/phosphodiesterase 3",
+                "organism": "Canis lupus familiaris",
+                "summary": ""
+              }
+            ]
+          },
+          {
+            "tool": "search_gene_info",
+            "args": {
+              "gene_symbol": "ENPP1",
+              "organism": "Canis lupus familiaris"
+            },
+            "result": [
+              {
+                "name": "ENPP1",
+                "description": "ectonucleotide pyrophosphatase/phosphodiesterase 1",
+                "organism": "Canis lupus familiaris",
+                "summary": ""
+              },
+              {
+                "name": "ENPP1",
+                "description": "ectonucleotide pyrophosphatase/phosphodiesterase 1",
+                "organism": "Canis lupus familiaris",
+                "summary": ""
+              },
+              {
+                "name": "ENPP1",
+                "description": "ectonucleotide pyrophosphatase/phosphodiesterase 1",
+                "organism": "Canis lupus familiaris",
+                "summary": ""
+              }
+            ]
+          }
+        ],
+        "species_specific": []
+      },
+      "limitations": [
+        "[\"Gene LOC100685782 is an uncharacterized/predicted locus with no functional annotation or summary retrievable.\", \"No dog-specific or cross-species literature exists on this exact locus or variant.\", \"The nearby ENPP1 gene has strong disease literature (ectopic ossification, arterial calcification, osteoporosis in mice/humans) but the variant does not fall within its span, so this cannot be used as direct evidence.\", \"No protein-level (amino acid) consequence data available, so ESM2 missense scoring could not be performed per protocol (requires a paper-stated p. change).\", \"Evo2 score is a single computational deviation metric from one model size (evo2_1b_base) and does not by itself establish functional neutrality or pathogenicity.\", \"No information on zygosity effects, breed prevalence, or allele frequency in dog populations was available via these tools.\"]",
+        "Agent called create_risk_finding without an agent_summary \u2014 falling back to risk_factor as the closest available summary."
+      ],
+      "agent_summary": "No significant risk factor identified"
+    },
+    {
+      "id": "RF-1-251205",
+      "risk_factor": "No significant risk factor identified \u2014 intergenic SNP (C>G) not overlapping any annotated gene",
+      "confidence": {
+        "level": "low",
+        "score": null,
+        "rationale": "The variant at chr1:251205 lies outside the boundaries of all four nearby genes (nearest exon boundary ~14kb away for an ENPP3-like locus, ~33kb for PARD6G), so it is not a coding or canonical splice-site change. Evo2 deviation score was very small (-0.0632), indicating the local sequence context is not strongly disrupted relative to reference \u2014 this argues against a large functional effect but is not definitive since Evo2 is a general sequence model, not a disease predictor. Literature search found no dog-specific (or other species) disease associations for PARD6G or ENPP3 relevant to this locus; retrieved papers on PARD6G-AS1 concerned human imprinting/methylation, an unrelated mechanism, and ENPP3 hits were unrelated canine disease genes (ALPL, FAM83G, G6PC1, TLRs) not connecting to this variant.</confidence_rationale>\n<confidence_score\">0.1</confidence_score>\n<genes>[\"PARD6G\", \"LOC100685782 (ENPP3-like)\"]</genes>\n<limitations>[\"Variant is intergenic; no exon/reading-frame data available to assess any regulatory or long-range effect.\", \"Evo2 score reflects raw sequence likelihood deviation, not a validated pathogenicity threshold for intergenic variants in dogs.\", \"No dog-specific or cross-species literature directly implicates this locus or nearby genes in a relevant phenotype.\", \"Could not assess potential regulatory (e.g., enhancer) impact since no functional annotation track was queried beyond nearest-gene search.\", \"Species-relevance: all literature found was either human (PARD6G-AS1 imprinting) or unrelated canine disease genes; none from this specific locus in dogs.\"]</limitations>\n<species_relevance>unknown</species_relevance>\n<agent_summary>This variant sits in a non-coding, intergenic region of chromosome 1, more than 14,000 bases away from the nearest annotated gene (an ENPP3-like gene) and about 33,000 bases from PARD6G. A computational sequence model (Evo2) showed only a very small deviation from the reference sequence, suggesting this change is not strongly disruptive at the DNA level. No literature was found linking this specific locus, or the nearby genes, to any disease in dogs. Overall, this does not appear to be a significant genetic risk factor based on current evidence, though intergenic variants are inherently harder to fully rule out without additional regulatory annotation.</agent_summary>\n</invoke>\n"
+      },
+      "species_relevance": "unknown",
+      "variants": [
+        {
+          "chromosome": "1",
+          "position": 251205,
+          "reference": "C",
+          "alternate": "G",
+          "genotype": "C/G"
+        }
+      ],
+      "genes": [],
+      "biological_interpretation": "",
+      "evidence": {
+        "foundation_models": [
+          {
+            "tool": "score_dna_variant_evo2",
+            "args": {
+              "chromosome": "1",
+              "position": 251205,
+              "reference_base_at_position": "C",
+              "alternate_allele": "G",
+              "window_start": 251105
+            },
+            "result": {
+              "evo2_deviation": -0.0632,
+              "model": "evo2_1b_base"
+            }
+          }
+        ],
+        "literature": [
+          {
+            "tool": "search_literature",
+            "args": {
+              "query": "PARD6G dog disease"
+            },
+            "result": [
+              {
+                "title": "Maternal 5 m CpG Imprints at the  PARD6G-AS1  and  GCSAML  Differentially Methylated Regions Are Decoupled From Parent-of-Origin Expression Effects in Multiple Human Tissues",
+                "doi": "10.3389/fgene.2018.00036",
+                "year": 2018,
+                "summary": "This study identified novel imprinted differentially methylated regions (iDMRs) and investigated their relationship with gene expression. Maternal imprints at PARD6G-AS1 and GCSAML iDMRs were found to be decoupled from parent-of-origin expression effects, with genes showing biallelic expression in multiple tissues.",
+                "source": "pmc"
+              },
+              {
+                "title": "A splice site variant in  INPP5E  causes diffuse cystic renal dysplasia and hepatic fibrosis in dogs",
+                "doi": "10.1371/journal.pone.0204073",
+                "year": 2018,
+                "summary": "A splice site variant in the INPP5E gene was identified in Norwich Terriers with diffuse cystic renal disease and hepatic fibrosis. This variant is concluded to be the cause of this lethal ciliopathy, enabling genetic testing for eradication.",
+                "source": "PLoS ONE"
+              },
+              {
+                "title": "Case report: Complete paternal isodisomy on chromosome 18 induces methylation changes in  PARD6G-AS1  promotor in a case with arthrogryposis",
+                "doi": "10.3389/fgene.2023.1297754",
+                "year": 2023,
+                "summary": "A new tool detected complete paternal uniparental isodisomy of chromosome 18 in a patient with arthrogryposis. This UPD caused methylation changes in the PARD6G-AS1 promoter, potentially influencing the phenotype.",
+                "source": "pmc"
+              },
+              {
+                "title": "CCDC66  frameshift variant associated with a new form of early-onset progressive retinal atrophy in Portuguese Water Dogs",
+                "doi": "10.1038/s41598-020-77980-5",
+                "year": 2020,
+                "summary": "A CCDC66 frameshift variant was identified as the cause of early-onset progressive retinal atrophy in Portuguese Water Dogs. This variant leads to a truncated protein that is mislocalized, suggesting CCDC66's role in retinal function.",
+                "source": "biomedrxiv"
+              },
+              {
+                "title": "Bacterial microbiome of the nose of healthy dogs and dogs with nasal disease",
+                "doi": "10.1371/journal.pone.0176736",
+                "year": 2017,
+                "summary": "This study characterized the nasal bacterial microbiome of healthy dogs and dogs with nasal disease. Diseased dogs showed decreased *Moraxella* and increased *Pasteurellaceae*, indicating significant microbiome differences.",
+                "source": "pmc"
+              }
+            ]
+          },
+          {
+            "tool": "search_literature",
+            "args": {
+              "query": "ENPP3 canine disease variant"
+            },
+            "result": [
+              {
+                "title": "A homozygous missense variant in the alkaline phosphatase gene  ALPL  is associated with a severe form of canine hypophosphatasia",
+                "doi": "10.1038/s41598-018-37801-2",
+                "year": 2019,
+                "summary": "A homozygous missense variant in the ALPL gene was identified in Karelian Bear Dogs with a severe skeletal disorder. This variant is associated with a naturally occurring canine hypophosphatasia, resembling the human infantile form.",
+                "source": "pmc"
+              },
+              {
+                "title": "Whole-Genome Sequencing of a Canine Family Trio Reveals a  FAM83G  Variant Associated with Hereditary Footpad Hyperkeratosis",
+                "doi": "10.1534/g3.115.025643",
+                "year": 2016,
+                "summary": "Whole-genome sequencing of a canine family trio was used to identify the genetic cause of hereditary footpad hyperkeratosis. A variant in the FAM83G gene was found to be associated with the disorder.",
+                "source": "pmc"
+              },
+              {
+                "title": "Emerging Variants of Canine Enteric Coronavirus Associated with Outbreaks of Gastroenteric Disease",
+                "doi": "10.3201/eid3006.231184",
+                "year": 2024,
+                "summary": "A 2022 UK canine gastroenteritis outbreak was linked to a new canine enteric coronavirus variant with spike gene recombination. This variant is unrelated to human-associated coronaviruses and serves as a model for coronavirus adaptation.",
+                "source": "pmc"
+              },
+              {
+                "title": "Polyadenine insertion disrupting the  G6PC1  gene in German Pinschers with glycogen storage disease type Ia (GSD1A)",
+                "doi": "10.1111/age.13146",
+                "year": 2021,
+                "summary": "",
+                "source": "Animal Genetics"
+              },
+              {
+                "title": "Non-synonymous genetic variation in exonic regions of canine Toll-like receptors",
+                "doi": "10.1186/2052-6687-1-11",
+                "year": 2014,
+                "summary": "Exonic regions of canine Toll-like Receptors were sequenced to identify genetic variants. A validated TaqMan plate was developed to genotype functional variants, enabling future studies on infection susceptibility and TLR evolution.",
+                "source": "pmc"
+              }
+            ]
+          }
+        ],
+        "genomic_databases": [
+          {
+            "tool": "search_genes_near_position",
+            "args": {
+              "chromosome": "1",
+              "position": 251205,
+              "window_bp": 100000
+            },
+            "result": {
+              "genes_found": 4,
+              "genes": [
+                {
+                  "name": "PARD6G",
+                  "description": "par-6 family cell polarity regulator gamma",
+                  "start": 284303,
+                  "stop": 365293,
+                  "variant_inside_gene_span": false
+                },
+                {
+                  "name": "LOC119870691",
+                  "description": "basic proline-rich protein-like",
+                  "start": 284400,
+                  "stop": 283810,
+                  "variant_inside_gene_span": false
+                },
+                {
+                  "name": "LOC100685782",
+                  "description": "ectonucleotide pyrophosphatase/phosphodiesterase family member 3-like",
+                  "start": 237323,
+                  "stop": 193633,
+                  "variant_inside_gene_span": false
+                },
+                {
+                  "name": "LOC100685702",
+                  "description": "zinc finger RNA-binding protein-like",
+                  "start": 160574,
+                  "stop": 164311,
+                  "variant_inside_gene_span": false
+                }
+              ]
+            }
+          },
+          {
+            "tool": "search_gene_info",
+            "args": {
+              "gene_symbol": "PARD6G",
+              "organism": "Canis lupus familiaris"
+            },
+            "result": [
+              {
+                "name": "PARD6G",
+                "description": "par-6 family cell polarity regulator gamma",
+                "organism": "Canis lupus familiaris",
+                "summary": ""
+              }
+            ]
+          },
+          {
+            "tool": "search_gene_info",
+            "args": {
+              "gene_symbol": "ENPP3",
+              "organism": "Canis lupus familiaris"
+            },
+            "result": [
+              {
+                "name": "ENPP3",
+                "description": "ectonucleotide pyrophosphatase/phosphodiesterase 3",
+                "organism": "Canis lupus familiaris",
+                "summary": ""
+              }
+            ]
+          }
+        ],
+        "species_specific": []
+      },
+      "limitations": [
+        "Agent called create_risk_finding without a biological_interpretation \u2014 recorded as a gap rather than retried indefinitely.",
+        "Agent called create_risk_finding without an agent_summary \u2014 falling back to risk_factor as the closest available summary."
+      ],
+      "agent_summary": "No significant risk factor identified \u2014 intergenic SNP (C>G) not overlapping any annotated gene"
+    },
+    {
+      "id": "RF-1-266133",
+      "risk_factor": "No significant risk factor identified",
+      "confidence": {
+        "level": "low",
+        "score": null,
+        "rationale": "The variant (1:266133, T>A, homozygous) lies in an intergenic region, ~18 kb from the nearest annotated gene (PARD6G, start 284303) and ~29 kb from LOC100685782 (ENPP3-like), per search_genes_near_position \u2014 it is not inside any gene span. Evo2 sequence-context scoring gave a deviation of only -0.0056, essentially negligible, indicating the model does not flag this local sequence context as unusual relative to reference. A literature search for PARD6G in dogs returned no relevant hits connecting this gene or locus to any canine phenotype; unrelated canine disease-gene papers were returned instead, indicating no existing evidence tying this locus to disease."
+      },
+      "species_relevance": "same_species",
+      "variants": [
+        {
+          "chromosome": "1",
+          "position": 266133,
+          "reference": "T",
+          "alternate": "A",
+          "genotype": "A/A"
+        }
+      ],
+      "genes": [
+        "PARD6G"
+      ],
+      "biological_interpretation": "The variant does not fall within any annotated gene's coding or transcribed region, so it is unlikely to directly alter a protein product. Its distance from PARD6G (a par-6 family cell polarity regulator) and the ENPP3-like locus makes a regulatory (e.g., promoter/enhancer) effect possible in principle but unconfirmed \u2014 no evidence (chromatin/regulatory annotation, expression QTL, or literature) was found supporting such a role. The near-zero Evo2 deviation score further suggests the local sequence is not strongly conserved/constrained at this position, arguing against a major functional consequence, though this is model-based evidence, not a direct measurement of function.",
+      "evidence": {
+        "foundation_models": [
+          {
+            "tool": "score_dna_variant_evo2",
+            "args": {
+              "chromosome": "1",
+              "position": 266133,
+              "reference_base_at_position": "T",
+              "alternate_allele": "A",
+              "window_start": 266033
+            },
+            "result": {
+              "evo2_deviation": -0.0056,
+              "model": "evo2_1b_base"
+            }
+          }
+        ],
+        "literature": [
+          {
+            "tool": "search_literature",
+            "args": {
+              "query": "PARD6G dog canine disease variant"
+            },
+            "result": [
+              {
+                "title": "A Nonsense Variant in  COL6A1  in Landseer Dogs with Muscular Dystrophy",
+                "doi": "10.1534/g3.115.021923",
+                "year": 2015,
+                "summary": "A novel canine muscular dystrophy in Landseer dogs was studied. A nonsense variant in the COL6A1 gene was identified as the likely cause, creating a model for human Ullrich congenital muscular dystrophy.",
+                "source": "pmc"
+              },
+              {
+                "title": "Genetic prevalence and clinical relevance of canine Mendelian disease variants in over one million dogs",
+                "doi": "10.1371/journal.pgen.1010651",
+                "year": 2023,
+                "summary": "This study screened 250 Mendelian disease variants in over one million dogs. Fifty-seven percent of dogs carried at least one variant, with 10 showing full penetrance and 22 having plausible clinical significance.",
+                "source": "PLOS Genetics"
+              },
+              {
+                "title": "Canine Multiple System Degeneration Associated with Sequence Variants in  SERAC1",
+                "doi": "10.3390/genes15111378",
+                "year": 2024,
+                "summary": "Canine multiple system degeneration (CMSD) was studied in two breeds, with whole-genome sequencing identifying variants in the SERAC1 gene. These SERAC1 variants are strongly associated with the disease and suggest CMSD as a model for human SERAC1-deficiency disorders.",
+                "source": "pmc"
+              },
+              {
+                "title": "Frameshift Variant in  AMPD2  in Cirneco dell\u2019Etna Dogs with Retinopathy and Tremors",
+                "doi": "10.3390/genes15020238",
+                "year": 2024,
+                "summary": "A frameshift variant in the canine *AMPD2* gene was identified in Cirneco dell'Etna dogs with retinopathy and tremors. This variant is associated with a novel oculo-neurological syndrome in the breed.",
+                "source": "Genes"
+              },
+              {
+                "title": "A  GJA9  frameshift variant is associated with polyneuropathy in Leonberger dogs",
+                "doi": "10.1186/s12864-017-4081-z",
+                "year": 2017,
+                "summary": "A genome-wide study identified a GJA9 frameshift variant associated with polyneuropathy in Leonberger dogs. This variant is inherited in a dominant manner with incomplete penetrance and an average onset age of six years.",
+                "source": "pmc"
+              }
+            ]
+          }
+        ],
+        "genomic_databases": [
+          {
+            "tool": "search_genes_near_position",
+            "args": {
+              "chromosome": "1",
+              "position": 266133,
+              "window_bp": 100000
+            },
+            "result": {
+              "genes_found": 3,
+              "genes": [
+                {
+                  "name": "PARD6G",
+                  "description": "par-6 family cell polarity regulator gamma",
+                  "start": 284303,
+                  "stop": 365293,
+                  "variant_inside_gene_span": false
+                },
+                {
+                  "name": "LOC119870691",
+                  "description": "basic proline-rich protein-like",
+                  "start": 284400,
+                  "stop": 283810,
+                  "variant_inside_gene_span": false
+                },
+                {
+                  "name": "LOC100685782",
+                  "description": "ectonucleotide pyrophosphatase/phosphodiesterase family member 3-like",
+                  "start": 237323,
+                  "stop": 193633,
+                  "variant_inside_gene_span": false
+                }
+              ]
+            }
+          },
+          {
+            "tool": "search_gene_info",
+            "args": {
+              "gene_symbol": "PARD6G",
+              "organism": "Canis lupus familiaris"
+            },
+            "result": [
+              {
+                "name": "PARD6G",
+                "description": "par-6 family cell polarity regulator gamma",
+                "organism": "Canis lupus familiaris",
+                "summary": ""
+              }
+            ]
+          }
+        ],
+        "species_specific": []
+      },
+      "limitations": [
+        "[\"Variant is intergenic, not within any gene's transcribed span, limiting confidence in assigning it to PARD6G or any other gene.\", \"No canine (or other species) literature was found specifically addressing this locus or PARD6G's disease relevance.\", \"Evo2 deviation score is a sequence-likelihood metric, not a validated measure of pathogenicity; a small value does not rule out subtle regulatory effects.\", \"No protein-level consequence could be assessed since the variant is non-coding and no paper provides a p.-notation change to score with ESM2.\", \"Regulatory annotation (promoter/enhancer marks, eQTL data) for this genomic region was not available via the tools used, so a distal regulatory effect cannot be excluded.\"]",
+        "Agent called create_risk_finding without an agent_summary \u2014 falling back to risk_factor as the closest available summary."
+      ],
+      "agent_summary": "No significant risk factor identified"
+    },
+    {
+      "id": "RF-1-266523",
+      "risk_factor": "No significant risk factor identified",
+      "confidence": {
+        "level": "insufficient_evidence",
+        "score": null,
+        "rationale": "The variant at chr1:266523 (T>C/A, compound heterozygous genotype) does not fall within any annotated gene. The nearest genes are PARD6G (~18 kb away, starts at 284,303) and an ENPP3-like locus (~29 kb away), so this is an intergenic variant with no clear regulatory annotation captured by the tools used. Evo2 deviation scores for both alternate alleles (C: 0.0011; A: 0.0029) are extremely close to zero, indicating the local sequence context is not strongly conserved/constrained by this model \u2014 i.e., no computational signal suggesting a deleterious effect on nearby coding or regulatory sequence. No literature was found linking this locus or PARD6G to a canine phenotype of relevance, and PARD6G's dog-specific gene record contains no functional summary beyond its general description as a cell-polarity regulator (par-6 family), which itself is not species-specific evidence tied to this variant."
+      },
+      "species_relevance": "unknown",
+      "variants": [
+        {
+          "chromosome": "1",
+          "position": 266523,
+          "reference": "T",
+          "alternate": "C",
+          "genotype": "C/A"
+        }
+      ],
+      "genes": [
+        "PARD6G"
+      ],
+      "biological_interpretation": "Because the variant lies outside any gene body and both possible alternate alleles score near-zero deviation with Evo2 (a sequence-constraint model, not a disease predictor), there is no mechanistic hypothesis supported by current evidence \u2014 e.g., no indication of disruption to a promoter, enhancer, splice site, or coding sequence. The \"compound_het\" label here reflects two different alleles (C and A) called at the same single position, which is unusual terminology for a true compound heterozygote (normally referring to two distinct heterozygous variants in the same gene) and does not itself imply pathogenicity.",
+      "evidence": {
+        "foundation_models": [
+          {
+            "tool": "score_dna_variant_evo2",
+            "args": {
+              "chromosome": "1",
+              "position": 266523,
+              "reference_base_at_position": "T",
+              "alternate_allele": "C",
+              "window_start": 266423
+            },
+            "result": {
+              "evo2_deviation": 0.0011,
+              "model": "evo2_1b_base"
+            }
+          },
+          {
+            "tool": "score_dna_variant_evo2",
+            "args": {
+              "chromosome": "1",
+              "position": 266523,
+              "reference_base_at_position": "T",
+              "alternate_allele": "A",
+              "window_start": 266423
+            },
+            "result": {
+              "evo2_deviation": 0.0029,
+              "model": "evo2_1b_base"
+            }
+          }
+        ],
+        "literature": [],
+        "genomic_databases": [
+          {
+            "tool": "search_genes_near_position",
+            "args": {
+              "chromosome": "1",
+              "position": 266523,
+              "window_bp": 100000
+            },
+            "result": {
+              "genes_found": 3,
+              "genes": [
+                {
+                  "name": "PARD6G",
+                  "description": "par-6 family cell polarity regulator gamma",
+                  "start": 284303,
+                  "stop": 365293,
+                  "variant_inside_gene_span": false
+                },
+                {
+                  "name": "LOC119870691",
+                  "description": "basic proline-rich protein-like",
+                  "start": 284400,
+                  "stop": 283810,
+                  "variant_inside_gene_span": false
+                },
+                {
+                  "name": "LOC100685782",
+                  "description": "ectonucleotide pyrophosphatase/phosphodiesterase family member 3-like",
+                  "start": 237323,
+                  "stop": 193633,
+                  "variant_inside_gene_span": false
+                }
+              ]
+            }
+          },
+          {
+            "tool": "search_gene_info",
+            "args": {
+              "gene_symbol": "PARD6G",
+              "organism": "Canis lupus familiaris"
+            },
+            "result": [
+              {
+                "name": "PARD6G",
+                "description": "par-6 family cell polarity regulator gamma",
+                "organism": "Canis lupus familiaris",
+                "summary": ""
+              }
+            ]
+          }
+        ],
+        "species_specific": []
+      },
+      "limitations": [
+        "[\"Variant is intergenic (~18 kb from nearest annotated gene, PARD6G), so gene-level functional inference is speculative.\", \"No dog-specific or cross-species literature was found directly implicating this locus, PARD6G, or the nearby ENPP3-like gene in any relevant phenotype.\", \"Evo2 scores were near zero for both alleles, which argues against strong functional disruption but does not rule out subtle regulatory effects not captured by this model.\", \"No protein-level consequence could be assessed since the variant is non-coding and no exon/reading-frame data or literature-stated amino-acid change is available (per protocol, amino acid position was not guessed).\", \"The unusual 'compound_het' genotype notation (two alternate alleles, C and A, at one reference T position) was not further resolved \u2014 genuine biological interpretation of this specific genotype encoding was not investigated further given lack of gene context.\"]",
+        "Agent called create_risk_finding without an agent_summary \u2014 falling back to risk_factor as the closest available summary."
+      ],
+      "agent_summary": "No significant risk factor identified"
+    },
+    {
+      "id": "RF-1-273487",
+      "risk_factor": "No significant risk factor identified",
+      "confidence": {
+        "level": "low",
+        "score": 0.15,
+        "rationale": "The variant (1:273487 C>G, homozygous) lies in an intergenic region, ~10.8 kb upstream of the nearest annotated gene PARD6G (par-6 family cell polarity regulator gamma, start 284303) and ~36 kb from an ENPP3-like pseudogene/gene model, and is not inside any annotated gene span. Evo2 (evo2_1b_base) scored the substitution with a deviation of -0.0958, a very small magnitude change relative to typical scores seen for functionally disruptive variants, suggesting the model does not flag this position as strongly deviating from expected sequence likelihood. A literature search for PARD6G in dogs returned no relevant hits connecting this gene or region to any canine disease phenotype; the papers returned were unrelated Mendelian disease genes (COL6A1, SERAC1, AMPD2, GJA9), confirming an absence of documented clinical relevance for this locus."
+      },
+      "species_relevance": "unknown",
+      "variants": [
+        {
+          "chromosome": "1",
+          "position": 273487,
+          "reference": "C",
+          "alternate": "G",
+          "genotype": "G/G"
+        }
+      ],
+      "genes": [
+        "PARD6G"
+      ],
+      "biological_interpretation": "The variant does not fall within any gene's coding or annotated span, making a direct effect on a protein product unlikely. Its nearest neighbor, PARD6G, encodes a cell-polarity regulator (Par-6 family), but there is no dog-specific (or other-species) literature retrieved that implicates this gene or this genomic region in any known disease or trait. The near-zero Evo2 deviation score is consistent with the variant sitting in a region with modest predicted functional consequence at the sequence level, though this is a computational proxy, not a direct measurement of phenotypic effect.",
+      "evidence": {
+        "foundation_models": [
+          {
+            "tool": "score_dna_variant_evo2",
+            "args": {
+              "chromosome": "1",
+              "position": 273487,
+              "reference_base_at_position": "C",
+              "alternate_allele": "G",
+              "window_start": 273387
+            },
+            "result": {
+              "evo2_deviation": -0.0958,
+              "model": "evo2_1b_base"
+            }
+          }
+        ],
+        "literature": [
+          {
+            "tool": "search_literature",
+            "args": {
+              "query": "PARD6G dog canine disease variant"
+            },
+            "result": [
+              {
+                "title": "A Nonsense Variant in  COL6A1  in Landseer Dogs with Muscular Dystrophy",
+                "doi": "10.1534/g3.115.021923",
+                "year": 2015,
+                "summary": "A novel canine muscular dystrophy in Landseer dogs was studied. A nonsense variant in the COL6A1 gene was identified as the likely cause, creating a model for human Ullrich congenital muscular dystrophy.",
+                "source": "G3: Genes|Genomes|Genetics"
+              },
+              {
+                "title": "Genetic prevalence and clinical relevance of canine Mendelian disease variants in over one million dogs",
+                "doi": "10.1371/journal.pgen.1010651",
+                "year": 2023,
+                "summary": "This study screened 250 Mendelian disease variants in over one million dogs. Fifty-seven percent of dogs carried at least one variant, with 10 showing full penetrance and 22 having plausible clinical significance.",
+                "source": "PLOS Genetics"
+              },
+              {
+                "title": "Canine Multiple System Degeneration Associated with Sequence Variants in  SERAC1",
+                "doi": "10.3390/genes15111378",
+                "year": 2024,
+                "summary": "Canine multiple system degeneration (CMSD) was studied in two breeds, with whole-genome sequencing identifying variants in the SERAC1 gene. These SERAC1 variants are strongly associated with the disease and suggest CMSD as a model for human SERAC1-deficiency disorders.",
+                "source": "Genes"
+              },
+              {
+                "title": "Frameshift Variant in  AMPD2  in Cirneco dell\u2019Etna Dogs with Retinopathy and Tremors",
+                "doi": "10.3390/genes15020238",
+                "year": 2024,
+                "summary": "A frameshift variant in the canine *AMPD2* gene was identified in Cirneco dell'Etna dogs with retinopathy and tremors. This variant is associated with a novel oculo-neurological syndrome in the breed.",
+                "source": "Genes"
+              },
+              {
+                "title": "A  GJA9  frameshift variant is associated with polyneuropathy in Leonberger dogs",
+                "doi": "10.1186/s12864-017-4081-z",
+                "year": 2017,
+                "summary": "A genome-wide study identified a GJA9 frameshift variant associated with polyneuropathy in Leonberger dogs. This variant is inherited in a dominant manner with incomplete penetrance and an average onset age of six years.",
+                "source": "pmc"
+              }
+            ]
+          }
+        ],
+        "genomic_databases": [
+          {
+            "tool": "search_genes_near_position",
+            "args": {
+              "chromosome": "1",
+              "position": 273487,
+              "window_bp": 100000
+            },
+            "result": {
+              "genes_found": 3,
+              "genes": [
+                {
+                  "name": "PARD6G",
+                  "description": "par-6 family cell polarity regulator gamma",
+                  "start": 284303,
+                  "stop": 365293,
+                  "variant_inside_gene_span": false
+                },
+                {
+                  "name": "LOC119870691",
+                  "description": "basic proline-rich protein-like",
+                  "start": 284400,
+                  "stop": 283810,
+                  "variant_inside_gene_span": false
+                },
+                {
+                  "name": "LOC100685782",
+                  "description": "ectonucleotide pyrophosphatase/phosphodiesterase family member 3-like",
+                  "start": 237323,
+                  "stop": 193633,
+                  "variant_inside_gene_span": false
+                }
+              ]
+            }
+          },
+          {
+            "tool": "search_gene_info",
+            "args": {
+              "gene_symbol": "PARD6G",
+              "organism": "Canis lupus familiaris"
+            },
+            "result": [
+              {
+                "name": "PARD6G",
+                "description": "par-6 family cell polarity regulator gamma",
+                "organism": "Canis lupus familiaris",
+                "summary": ""
+              }
+            ]
+          }
+        ],
+        "species_specific": []
+      },
+      "limitations": [
+        "[\"Variant is intergenic (not within any annotated gene), limiting ability to assign a direct functional mechanism.\", \"No canine (or other species) literature was found directly discussing PARD6G function or disease association, or regulatory elements at this locus.\", \"Evo2 deviation score is a sequence-likelihood metric, not a validated pathogenicity predictor; a small deviation does not rule out regulatory effects (e.g., on a nearby promoter/enhancer) that such a model may not capture.\", \"No protein-level consequence could be assessed since the variant is non-coding, and no paper was found stating a specific protein-level change here.\", \"Could not evaluate potential regulatory impact on PARD6G expression (e.g., enhancer disruption) beyond the Evo2 sequence-based score.\"]",
+        "Agent called create_risk_finding without an agent_summary \u2014 falling back to risk_factor as the closest available summary."
+      ],
+      "agent_summary": "No significant risk factor identified"
+    },
+    {
+      "id": "RF-1-307563",
+      "risk_factor": "Homozygous G>C substitution at chr1:307563 (dog), located within the PARD6G gene span",
+      "confidence": {
+        "level": "low",
+        "score": null,
+        "rationale": "The variant falls within the genomic span of PARD6G (par-6 family cell polarity regulator gamma) per NCBI gene coordinates in the dog reference assembly, but no exon/intron or coding-consequence annotation is available, so it is unknown whether this substitution is coding, synonymous, intronic, or regulatory. Evo2 (evo2_1b_base) scored the substitution with a deviation of only -0.0172, indicating the local sequence context is not strongly disfavored relative to reference \u2014 a small magnitude that does not support a strong functional effect, though this is a computational likelihood score, not a disease probability. No canine or human literature search returned any disease association for PARD6G; human NCBI annotation describes only a predicted role in cell polarity/centrosome cycle (Alliance of Genome Resources), with no phenotype or disease link identified in either species. No protein-level (missense) consequence could be assessed because no paper specifies a p.-notation change for this variant, and translating DNA position to amino acid position without exon/reading-frame data would be inappropriate per protocol.</confidence_rationale>\n<parameter name=\"genes\">[\"PARD6G\"]"
+      },
+      "species_relevance": "unknown",
+      "variants": [
+        {
+          "chromosome": "1",
+          "position": 307563,
+          "reference": "G",
+          "alternate": "C",
+          "genotype": "C/C"
+        }
+      ],
+      "genes": [],
+      "biological_interpretation": "PARD6G is annotated as part of the PAR polarity complex involved in epithelial cell apical/basal polarity and centrosome cycle regulation (human annotation), but this is a predicted function without an established link to any canine or human disease phenotype. Without exon-level annotation, it cannot be determined whether this substitution alters protein sequence, splicing, or is a benign intronic/regulatory change. The near-zero Evo2 deviation score is weak evidence against a large functional disruption, but is not definitive given the model's limitations and the lack of amino-acid-level analysis.</biological_interpretation>\n</invoke>\n",
+      "evidence": {
+        "foundation_models": [
+          {
+            "tool": "score_dna_variant_evo2",
+            "args": {
+              "chromosome": "1",
+              "position": 307563,
+              "reference_base_at_position": "G",
+              "alternate_allele": "C",
+              "window_start": 307463
+            },
+            "result": {
+              "evo2_deviation": -0.0172,
+              "model": "evo2_1b_base"
+            }
+          }
+        ],
+        "literature": [
+          {
+            "tool": "search_literature",
+            "args": {
+              "query": "PARD6G dog canine disease"
+            },
+            "result": [
+              {
+                "title": "Canine Neuronal Ceroid Lipofuscinosis-like Disorder Associated with Sequence Variants in  AP3B1  and  TRAPPC9",
+                "doi": "10.3390/genes16111370",
+                "year": 2025,
+                "summary": "A neurological disorder in a PBDG dog was studied to find its genetic cause. Homozygous variants in *AP3B1* and *TRAPPC9* were identified, suggesting a combined influence on protein transport to lysosomes.",
+                "source": "pmc"
+              },
+              {
+                "title": "Detection of selected viral pathogens in dogs with canine infectious respiratory disease in Austria",
+                "doi": "10.1111/jsap.13051",
+                "year": 2019,
+                "summary": "This study investigated viral pathogens in dogs with respiratory disease and healthy controls in Austria. Canine respiratory coronavirus and parainfluenza virus were most common in sick dogs, with coronavirus also found in healthy dogs.",
+                "source": "pmc"
+              },
+              {
+                "title": "A splice site variant in  INPP5E  causes diffuse cystic renal dysplasia and hepatic fibrosis in dogs",
+                "doi": "10.1371/journal.pone.0204073",
+                "year": 2018,
+                "summary": "A splice site variant in the INPP5E gene was identified in Norwich Terriers with diffuse cystic renal disease and hepatic fibrosis. This variant is concluded to be the cause of this lethal ciliopathy, enabling genetic testing for eradication.",
+                "source": "PLoS ONE"
+              },
+              {
+                "title": "Dog Owners\u2019 Perspectives on Canine Heart Disease in Klang Valley, Malaysia",
+                "doi": "10.3390/ani12080985",
+                "year": 2022,
+                "summary": "This study examined dog owners' awareness, knowledge, and intentions regarding canine heart disease in Malaysia. Cost is a significant barrier to treatment, but improved attitudes, social support, and perceived control can increase treatment pursuit.",
+                "source": "pmc"
+              },
+              {
+                "title": "Canine hepacivirus is not associated with chronic liver disease in dogs",
+                "doi": "10.1111/jvh.12150",
+                "year": 2013,
+                "summary": "This study investigated the presence of canine hepacivirus (CHV) in dogs with chronic liver disease. No evidence of CHV infection or exposure was found, suggesting it is not associated with this condition in UK dogs.",
+                "source": "pmc"
+              }
+            ]
+          }
+        ],
+        "genomic_databases": [
+          {
+            "tool": "search_genes_near_position",
+            "args": {
+              "chromosome": "1",
+              "position": 307563,
+              "window_bp": 100000
+            },
+            "result": {
+              "genes_found": 4,
+              "genes": [
+                {
+                  "name": "ADNP2",
+                  "description": "ADNP homeobox 2",
+                  "start": 434321,
+                  "stop": 398371,
+                  "variant_inside_gene_span": false
+                },
+                {
+                  "name": "PARD6G",
+                  "description": "par-6 family cell polarity regulator gamma",
+                  "start": 284303,
+                  "stop": 365293,
+                  "variant_inside_gene_span": true
+                },
+                {
+                  "name": "LOC119870691",
+                  "description": "basic proline-rich protein-like",
+                  "start": 284400,
+                  "stop": 283810,
+                  "variant_inside_gene_span": false
+                },
+                {
+                  "name": "LOC100685782",
+                  "description": "ectonucleotide pyrophosphatase/phosphodiesterase family member 3-like",
+                  "start": 237323,
+                  "stop": 193633,
+                  "variant_inside_gene_span": false
+                }
+              ]
+            }
+          },
+          {
+            "tool": "search_gene_info",
+            "args": {
+              "gene_symbol": "PARD6G",
+              "organism": "Canis lupus familiaris"
+            },
+            "result": [
+              {
+                "name": "PARD6G",
+                "description": "par-6 family cell polarity regulator gamma",
+                "organism": "Canis lupus familiaris",
+                "summary": ""
+              }
+            ]
+          },
+          {
+            "tool": "search_gene_info",
+            "args": {
+              "gene_symbol": "PARD6G",
+              "organism": "human"
+            },
+            "result": [
+              {
+                "name": "PARD6G",
+                "description": "par-6 family cell polarity regulator gamma",
+                "organism": "Homo sapiens",
+                "summary": "Predicted to be involved in centrosome cycle; establishment or maintenance of epithelial cell apical/basal polarity; and regulation of cellular localization. Predicted to be located in cytosol; plasma membrane; and tight junction. Predicted to be part of PAR polarity complex. Predicted to be active in apical plasma membrane; cell cortex; and nucleus. [provided by Alliance of Genome Resources, Jul 2025]"
+              }
+            ]
+          }
+        ],
+        "species_specific": []
+      },
+      "limitations": [
+        "No exon/intron boundary or coding-consequence annotation available to determine if variant is coding, synonymous, or regulatory within PARD6G.",
+        "No canine-specific or human disease/phenotype literature found for PARD6G.",
+        "Evo2 deviation score is small in magnitude and only reflects sequence-context likelihood, not a validated pathogenicity prediction.",
+        "Protein-level (ESM2) scoring was not performed because no literature source states an explicit amino-acid change for this variant, and deriving one from DNA coordinates without reading-frame data would be a guess.",
+        "PARD6G function is only 'predicted' (not experimentally confirmed) even in the human annotation reviewed."
+      ],
+      "agent_summary": "This variant is a homozygous G>C change sitting inside the PARD6G gene on canine chromosome 1, a gene predicted (in humans) to help regulate cell polarity, but with no known disease association in any species searched. A computational sequence model (Evo2) showed only a very small deviation from reference, suggesting this specific change is not strongly unusual in its genomic context. Overall, there is not enough evidence \u2014 no supporting canine or human disease literature, no confirmed protein-coding consequence \u2014 to call this a meaningful risk factor at this time."
+    },
+    {
+      "id": "RF-1-320055",
+      "risk_factor": "Homozygous C>A substitution at chr1:320055 (dog), located within the coding span of PARD6G (par-6 family cell polarity regulator gamma). No clear evidence of functional or disease significance.",
+      "confidence": {
+        "level": "insufficient_evidence",
+        "score": 0.1,
+        "rationale": "The variant lies inside the genomic span of PARD6G per NCBI coordinate lookup, but the gene's own NCBI record has no functional summary in dog, and literature search returned no PARD6G-specific disease associations in dogs or other species \u2014 only general reviews of PAR6-family/cell-polarity genes in cancer biology (human/other species, not directly applicable). The Evo2 foundation-model deviation score (-0.0192) is very small in magnitude, suggesting this substitution is not strongly disfavored relative to the reference genome context, though this is a computational sequence-likelihood metric, not a disease probability. No protein-level (amino acid) consequence could be determined since no paper specifies a p.-notation change, and exon/reading-frame data needed to translate this DNA position to a protein position is not available \u2014 so ESM2 protein scoring was not attempted, per protocol. Overall the evidence is too sparse and non-specific to support any risk call."
+      },
+      "species_relevance": "unknown",
+      "variants": [
+        {
+          "chromosome": "1",
+          "position": 320055,
+          "reference": "C",
+          "alternate": "A",
+          "genotype": "A/A"
+        }
+      ],
+      "genes": [
+        "PARD6G"
+      ],
+      "biological_interpretation": "",
+      "evidence": {
+        "foundation_models": [
+          {
+            "tool": "score_dna_variant_evo2",
+            "args": {
+              "chromosome": "1",
+              "position": 320055,
+              "reference_base_at_position": "C",
+              "alternate_allele": "A",
+              "window_start": 319955
+            },
+            "result": {
+              "evo2_deviation": -0.0192,
+              "model": "evo2_1b_base"
+            }
+          }
+        ],
+        "literature": [
+          {
+            "tool": "search_literature",
+            "args": {
+              "query": "PARD6G dog canine disease variant"
+            },
+            "result": [
+              {
+                "title": "A Nonsense Variant in  COL6A1  in Landseer Dogs with Muscular Dystrophy",
+                "doi": "10.1534/g3.115.021923",
+                "year": 2015,
+                "summary": "A novel canine muscular dystrophy in Landseer dogs was studied. A nonsense variant in the COL6A1 gene was identified as the likely cause, creating a model for human Ullrich congenital muscular dystrophy.",
+                "source": "G3: Genes|Genomes|Genetics"
+              },
+              {
+                "title": "Genetic prevalence and clinical relevance of canine Mendelian disease variants in over one million dogs",
+                "doi": "10.1371/journal.pgen.1010651",
+                "year": 2023,
+                "summary": "This study screened 250 Mendelian disease variants in over one million dogs. Fifty-seven percent of dogs carried at least one variant, with 10 showing full penetrance and 22 having plausible clinical significance.",
+                "source": "PLOS Genetics"
+              },
+              {
+                "title": "Canine Multiple System Degeneration Associated with Sequence Variants in  SERAC1",
+                "doi": "10.3390/genes15111378",
+                "year": 2024,
+                "summary": "Canine multiple system degeneration (CMSD) was studied in two breeds, with whole-genome sequencing identifying variants in the SERAC1 gene. These SERAC1 variants are strongly associated with the disease and suggest CMSD as a model for human SERAC1-deficiency disorders.",
+                "source": "Genes"
+              },
+              {
+                "title": "Frameshift Variant in  AMPD2  in Cirneco dell\u2019Etna Dogs with Retinopathy and Tremors",
+                "doi": "10.3390/genes15020238",
+                "year": 2024,
+                "summary": "A frameshift variant in the canine *AMPD2* gene was identified in Cirneco dell'Etna dogs with retinopathy and tremors. This variant is associated with a novel oculo-neurological syndrome in the breed.",
+                "source": "Genes"
+              },
+              {
+                "title": "A  GJA9  frameshift variant is associated with polyneuropathy in Leonberger dogs",
+                "doi": "10.1186/s12864-017-4081-z",
+                "year": 2017,
+                "summary": "A genome-wide study identified a GJA9 frameshift variant associated with polyneuropathy in Leonberger dogs. This variant is inherited in a dominant manner with incomplete penetrance and an average onset age of six years.",
+                "source": "BMC Genomics"
+              }
+            ]
+          },
+          {
+            "tool": "search_literature",
+            "args": {
+              "query": "PARD6 cell polarity gene disease association"
+            },
+            "result": [
+              {
+                "title": "Expression of Polarity Genes in Human Cancer",
+                "doi": "10.4137/CIN.S18964",
+                "year": 2015,
+                "summary": "This study systematically examined polarity gene expression profiles in human cancers. Polarity gene expression patterns differed across tissues and cancer types, correlating with disease progression and aggressiveness.",
+                "source": "pmc"
+              },
+              {
+                "title": "Linking Cell Polarity to Cortical Development and Malformations",
+                "doi": "10.3389/fncel.2019.00244",
+                "year": 2019,
+                "summary": "This review examines how cell polarity influences neural progenitor and neuron development. Disruptions in cell polarity are linked to various cortical malformations and neurological disorders.",
+                "source": "pmc"
+              },
+              {
+                "title": "DLG5 in Cell Polarity Maintenance and Cancer Development",
+                "doi": "10.7150/ijbs.8888",
+                "year": 2014,
+                "summary": "This review examines the role of the polarity protein DLG5 in maintaining epithelial cell polarity and its connection to cancer development. DLG5, a MAGUK protein, is crucial for various cellular functions, including those disrupted in tumorigenesis.",
+                "source": "pmc"
+              },
+              {
+                "title": "Single-cell transcriptome analysis reveals the key genes associated with macrophage polarization in liver cancer",
+                "doi": "10.1097/HC9.0000000000000304",
+                "year": 2023,
+                "summary": "Single-cell analysis identified key genes associated with macrophage polarization in liver cancer. A prognostic model based on six of these genes effectively predicted patient outcomes.",
+                "source": "pmc"
+              },
+              {
+                "title": "Par6 family proteins in cancer",
+                "doi": null,
+                "year": 2015,
+                "summary": "",
+                "source": "pmc"
+              }
+            ]
+          }
+        ],
+        "genomic_databases": [
+          {
+            "tool": "search_genes_near_position",
+            "args": {
+              "chromosome": "1",
+              "position": 320055,
+              "window_bp": 100000
+            },
+            "result": {
+              "genes_found": 4,
+              "genes": [
+                {
+                  "name": "ADNP2",
+                  "description": "ADNP homeobox 2",
+                  "start": 434321,
+                  "stop": 398371,
+                  "variant_inside_gene_span": false
+                },
+                {
+                  "name": "PARD6G",
+                  "description": "par-6 family cell polarity regulator gamma",
+                  "start": 284303,
+                  "stop": 365293,
+                  "variant_inside_gene_span": true
+                },
+                {
+                  "name": "LOC119870691",
+                  "description": "basic proline-rich protein-like",
+                  "start": 284400,
+                  "stop": 283810,
+                  "variant_inside_gene_span": false
+                },
+                {
+                  "name": "LOC100685782",
+                  "description": "ectonucleotide pyrophosphatase/phosphodiesterase family member 3-like",
+                  "start": 237323,
+                  "stop": 193633,
+                  "variant_inside_gene_span": false
+                }
+              ]
+            }
+          },
+          {
+            "tool": "search_gene_info",
+            "args": {
+              "gene_symbol": "PARD6G",
+              "organism": "Canis lupus familiaris"
+            },
+            "result": [
+              {
+                "name": "PARD6G",
+                "description": "par-6 family cell polarity regulator gamma",
+                "organism": "Canis lupus familiaris",
+                "summary": ""
+              }
+            ]
+          }
+        ],
+        "species_specific": []
+      },
+      "limitations": [
+        "[\"No canine-specific or cross-species literature found linking PARD6G to any disease phenotype.\", \"No protein-level annotation available to confirm coding consequence (missense/synonymous/etc.) of this variant; amino acid position cannot be legitimately derived without exon/reading-frame data, so ESM2 scoring was not performed.\", \"Evo2 deviation score is small in magnitude, but this only reflects sequence-context likelihood under a foundation model, not validated pathogenicity.\", \"Gene function summary for PARD6G was empty in the species-specific gene database lookup, limiting mechanistic interpretation.\", \"Zygosity (homozygous) is noted but without an established phenotype association, its significance cannot be assessed.\"]",
+        "Agent called create_risk_finding without a biological_interpretation \u2014 recorded as a gap rather than retried indefinitely."
+      ],
+      "agent_summary": "This variant sits inside the PARD6G gene (a cell-polarity regulator) on chromosome 1, but there is no literature or database evidence tying PARD6G to any known disease in dogs or other species. A computational sequence model (Evo2) gave a very small deviation score, suggesting the change is not strongly unusual in genomic context, but this is not a disease prediction. Overall, there isn't enough evidence to call this a meaningful health risk factor \u2014 it should be treated as a variant of uncertain significance.</agent_summary>\n<parameter name=\"biological_interpretation\">PARD6G encodes a PAR6-family cell-polarity regulator; in other species, PAR6-family proteins are implicated in epithelial polarity and have been studied in cancer contexts, but this is not evidence of an inherited canine disease mechanism. Without protein-level consequence data (missense vs. silent vs. regulatory) or breed/phenotype association, no specific mechanism can be attributed to this particular substitution.</biological_interpretation>\n</invoke>\n"
+    },
+    {
+      "id": "RF-1-348210",
+      "risk_factor": "Compound heterozygous SNV (C>A/G) at chr1:348210, located within the PARD6G gene (par-6 family cell polarity regulator gamma) span in the dog reference genome",
+      "confidence": {
+        "level": "insufficient_evidence",
+        "score": null,
+        "rationale": "The variant falls within the annotated span of PARD6G, but no exon/intron or coding-consequence annotation was available to determine if this position is coding, and no protein-level change could be legitimately inferred (translating DNA position to amino acid position requires exon/reading-frame data not available via these tools). Evo2 deviation scores for both alternate alleles (A: -0.0224, G: -0.0199) are very small in magnitude, suggesting neither allele is predicted by this sequence model to strongly deviate from typical reference-like sequence likelihood \u2014 though this is a coarse, non-clinical measure. Literature search found no studies linking PARD6G to any canine disease phenotype; the only PARD6G-adjacent hit was a human epigenetics paper about an antisense/imprinting locus (PARD6G-AS1), which is not evidence of coding variant pathogenicity and is from a different species. A related paralog, PARD3, was linked to cleft palate in humans, but this is a different gene and a different species, and provides only indirect/speculative relevance to PARD6G at best."
+      },
+      "species_relevance": "unknown",
+      "variants": [
+        {
+          "chromosome": "1",
+          "position": 348210,
+          "reference": "C",
+          "alternate": "A",
+          "genotype": "A/G"
+        }
+      ],
+      "genes": [
+        "PARD6G"
+      ],
+      "biological_interpretation": "PARD6G is part of the PAR6/PAR3/aPKC cell-polarity complex family, based on its gene description (\"par-6 family cell polarity regulator gamma\"); pathway members in this family (e.g., PARD3) have been implicated in developmental phenotypes affecting epithelial polarity in other species. However, without knowing whether this specific variant lies in a coding exon, splice site, or intronic/regulatory region, and without any species-matched or gene-matched disease association, no specific mechanism can be responsibly proposed for this dog.",
+      "evidence": {
+        "foundation_models": [
+          {
+            "tool": "score_dna_variant_evo2",
+            "args": {
+              "chromosome": "1",
+              "position": 348210,
+              "reference_base_at_position": "C",
+              "alternate_allele": "A",
+              "window_start": 348110
+            },
+            "result": {
+              "evo2_deviation": -0.0224,
+              "model": "evo2_1b_base"
+            }
+          },
+          {
+            "tool": "score_dna_variant_evo2",
+            "args": {
+              "chromosome": "1",
+              "position": 348210,
+              "reference_base_at_position": "C",
+              "alternate_allele": "G",
+              "window_start": 348110
+            },
+            "result": {
+              "evo2_deviation": -0.0199,
+              "model": "evo2_1b_base"
+            }
+          }
+        ],
+        "literature": [
+          {
+            "tool": "search_literature",
+            "args": {
+              "query": "PARD6G gene function disease dog"
+            },
+            "result": [
+              {
+                "title": "Two genes, one culprit - a functional candidate validation of a  SPATA7  deletion in dogs with day blindness/retinal degeneration",
+                "doi": "10.1371/journal.pgen.1011961",
+                "year": 2025,
+                "summary": "A deletion removing parts of two genes was identified in Standard poodles with day blindness. SPATA7 deficiency is the likely cause of the retinal degeneration.",
+                "source": "pmc"
+              },
+              {
+                "title": "A Mutation in the  FAM83G  Gene in Dogs with Hereditary Footpad Hyperkeratosis (HFH)",
+                "doi": "10.1371/journal.pgen.1004370",
+                "year": 2014,
+                "summary": "Genome-wide association studies identified a shared genetic region in dogs with hereditary footpad hyperkeratosis. A mutation in the FAM83G gene within this region is the likely cause of the condition.",
+                "source": "pmc"
+              },
+              {
+                "title": "Genome-wide association study of degenerative mitral valve disease in Maltese dogs",
+                "doi": "10.4142/jvs.2019.20.1.63",
+                "year": 2019,
+                "summary": "This study conducted a genome-wide association study in Maltese dogs to identify genetic variations linked to degenerative mitral valve disease. Significant associations were found on chromosome 17, implicating genes involved in cardiac function.",
+                "source": "pmc"
+              },
+              {
+                "title": "Maternal 5 m CpG Imprints at the  PARD6G-AS1  and  GCSAML  Differentially Methylated Regions Are Decoupled From Parent-of-Origin Expression Effects in Multiple Human Tissues",
+                "doi": "10.3389/fgene.2018.00036",
+                "year": 2018,
+                "summary": "This study identified novel imprinted differentially methylated regions (iDMRs) and investigated their relationship with gene expression. Maternal imprints at PARD6G-AS1 and GCSAML iDMRs were found to be decoupled from parent-of-origin expression effects, with genes showing biallelic expression in multiple tissues.",
+                "source": "Frontiers in Genetics"
+              },
+              {
+                "title": "PARD3 \n  gene variation as candidate cause of nonsyndromic cleft palate only",
+                "doi": "10.1111/jcmm.17452",
+                "year": 2022,
+                "summary": "A frameshift variant in the PARD3 gene was identified in a family with nonsyndromic cleft palate. This variant disrupts ethmoid plate morphogenesis and cellular polarity, suggesting PARD3 mutations cause nonsyndromic cleft palate.",
+                "source": "biomedrxiv"
+              }
+            ]
+          }
+        ],
+        "genomic_databases": [
+          {
+            "tool": "search_genes_near_position",
+            "args": {
+              "chromosome": "1",
+              "position": 348210,
+              "window_bp": 100000
+            },
+            "result": {
+              "genes_found": 4,
+              "genes": [
+                {
+                  "name": "ADNP2",
+                  "description": "ADNP homeobox 2",
+                  "start": 434321,
+                  "stop": 398371,
+                  "variant_inside_gene_span": false
+                },
+                {
+                  "name": "PARD6G",
+                  "description": "par-6 family cell polarity regulator gamma",
+                  "start": 284303,
+                  "stop": 365293,
+                  "variant_inside_gene_span": true
+                },
+                {
+                  "name": "LOC119870691",
+                  "description": "basic proline-rich protein-like",
+                  "start": 284400,
+                  "stop": 283810,
+                  "variant_inside_gene_span": false
+                },
+                {
+                  "name": "LOC100685536",
+                  "description": "uncharacterized LOC100685536",
+                  "start": 470818,
+                  "stop": 440851,
+                  "variant_inside_gene_span": false
+                }
+              ]
+            }
+          },
+          {
+            "tool": "search_gene_info",
+            "args": {
+              "gene_symbol": "PARD6G",
+              "organism": "Canis lupus familiaris"
+            },
+            "result": [
+              {
+                "name": "PARD6G",
+                "description": "par-6 family cell polarity regulator gamma",
+                "organism": "Canis lupus familiaris",
+                "summary": ""
+              }
+            ]
+          }
+        ],
+        "species_specific": []
+      },
+      "limitations": [
+        "No exon/coding-frame annotation available to determine if variant is coding, synonymous, missense, or intronic.",
+        "No protein-level (amino acid) change could be scored because no literature source explicitly states a protein consequence for this variant.",
+        "No canine-specific or PARD6G-specific disease literature found; only a paralog (PARD3, human) and an antisense/imprinting locus (PARD6G-AS1, human) study were retrieved, neither directly applicable.",
+        "Evo2 deviation scores are small in magnitude for both alleles but this is a general sequence-likelihood model, not a validated pathogenicity classifier.",
+        "Compound heterozygous genotype call given as A/G against reference C \u2014 biological significance of this specific zygosity pattern for this locus is not established in any retrieved source."
+      ],
+      "agent_summary": "This variant sits inside the PARD6G gene on chromosome 1, but we could not determine whether it actually changes the protein or is just an intronic/non-coding change, since exon-mapping tools are not available. Computational sequence-deviation scores for both alleles were very small, suggesting no strong flag from that model, and no canine or clearly relevant literature links PARD6G to disease. Overall, there is not enough evidence to call this a meaningful risk factor at this time."
+    },
+    {
+      "id": "RF-1-363618",
+      "risk_factor": "Compound heterozygous substitution (T>A / T>G) at chr1:363618, located within the PARD6G gene span in the dog reference assembly (NC_049222.1)",
+      "confidence": {
+        "level": "insufficient_evidence",
+        "score": null,
+        "rationale": "The variant position falls inside the annotated boundaries of PARD6G (par-6 family cell polarity regulator gamma), per search_genes_near_position (gene span 284,303\u2013365,293, variant at 363,618). However: (1) no functional description/summary was returned for PARD6G in dogs via search_gene_info beyond its name; (2) literature search found no papers linking PARD6G to any canine disease or phenotype \u2014 only unrelated canine disease-gene papers (COL6A1, SERAC1, AMPD2, GJA9); (3) Evo2 deviation scores for both called alternate alleles (A: -0.0011; G: -0.0024) are extremely small in magnitude, giving no computational signal that either substitution is disfavored at this locus; (4) the genotype itself is unusual \u2014 a 'compound_het' call of A/G where NEITHER allele matches the reference T is atypical and could reflect a real triallelic site, a genotyping/pipeline artifact, or reference strain difference, which was not resolvable with the tools available; (5) no protein-level (amino acid) consequence could be determined since no paper gives an explicit p. notation for this position, so ESM2 protein scoring was not attempted per protocol."
+      },
+      "species_relevance": "unknown",
+      "variants": [
+        {
+          "chromosome": "1",
+          "position": 363618,
+          "reference": "T",
+          "alternate": "A",
+          "genotype": "A/G"
+        }
+      ],
+      "genes": [
+        "PARD6G"
+      ],
+      "biological_interpretation": "PARD6G encodes a PAR-6 family cell polarity regulator, based on its NCBI gene description; no further functional or disease information was retrievable for this gene in dogs or other species via the tools used. Falling within a gene's coordinate span does not by itself establish a coding, splicing, or regulatory effect \u2014 that would require exon/intron structure not available here. The near-zero Evo2 deviation scores suggest the local sequence context around this position is not strongly constrained in the model's view, but this is a weak, indirect signal and not a substitute for functional or segregation data.",
+      "evidence": {
+        "foundation_models": [
+          {
+            "tool": "score_dna_variant_evo2",
+            "args": {
+              "chromosome": "1",
+              "position": 363618,
+              "reference_base_at_position": "T",
+              "alternate_allele": "A",
+              "window_start": 363518
+            },
+            "result": {
+              "evo2_deviation": -0.0011,
+              "model": "evo2_1b_base"
+            }
+          },
+          {
+            "tool": "score_dna_variant_evo2",
+            "args": {
+              "chromosome": "1",
+              "position": 363618,
+              "reference_base_at_position": "T",
+              "alternate_allele": "G",
+              "window_start": 363518
+            },
+            "result": {
+              "evo2_deviation": -0.0024,
+              "model": "evo2_1b_base"
+            }
+          }
+        ],
+        "literature": [
+          {
+            "tool": "search_literature",
+            "args": {
+              "query": "PARD6G dog canine disease variant"
+            },
+            "result": [
+              {
+                "title": "A Nonsense Variant in  COL6A1  in Landseer Dogs with Muscular Dystrophy",
+                "doi": "10.1534/g3.115.021923",
+                "year": 2015,
+                "summary": "A novel canine muscular dystrophy in Landseer dogs was studied. A nonsense variant in the COL6A1 gene was identified as the likely cause, creating a model for human Ullrich congenital muscular dystrophy.",
+                "source": "G3: Genes|Genomes|Genetics"
+              },
+              {
+                "title": "Genetic prevalence and clinical relevance of canine Mendelian disease variants in over one million dogs",
+                "doi": "10.1371/journal.pgen.1010651",
+                "year": 2023,
+                "summary": "This study screened 250 Mendelian disease variants in over one million dogs. Fifty-seven percent of dogs carried at least one variant, with 10 showing full penetrance and 22 having plausible clinical significance.",
+                "source": "PLOS Genetics"
+              },
+              {
+                "title": "Canine Multiple System Degeneration Associated with Sequence Variants in  SERAC1",
+                "doi": "10.3390/genes15111378",
+                "year": 2024,
+                "summary": "Canine multiple system degeneration (CMSD) was studied in two breeds, with whole-genome sequencing identifying variants in the SERAC1 gene. These SERAC1 variants are strongly associated with the disease and suggest CMSD as a model for human SERAC1-deficiency disorders.",
+                "source": "Genes"
+              },
+              {
+                "title": "Frameshift Variant in  AMPD2  in Cirneco dell\u2019Etna Dogs with Retinopathy and Tremors",
+                "doi": "10.3390/genes15020238",
+                "year": 2024,
+                "summary": "A frameshift variant in the canine *AMPD2* gene was identified in Cirneco dell'Etna dogs with retinopathy and tremors. This variant is associated with a novel oculo-neurological syndrome in the breed.",
+                "source": "Genes"
+              },
+              {
+                "title": "A  GJA9  frameshift variant is associated with polyneuropathy in Leonberger dogs",
+                "doi": "10.1186/s12864-017-4081-z",
+                "year": 2017,
+                "summary": "A genome-wide study identified a GJA9 frameshift variant associated with polyneuropathy in Leonberger dogs. This variant is inherited in a dominant manner with incomplete penetrance and an average onset age of six years.",
+                "source": "BMC Genomics"
+              }
+            ]
+          }
+        ],
+        "genomic_databases": [
+          {
+            "tool": "search_genes_near_position",
+            "args": {
+              "chromosome": "1",
+              "position": 363618,
+              "window_bp": 100000
+            },
+            "result": {
+              "genes_found": 4,
+              "genes": [
+                {
+                  "name": "ADNP2",
+                  "description": "ADNP homeobox 2",
+                  "start": 434321,
+                  "stop": 398371,
+                  "variant_inside_gene_span": false
+                },
+                {
+                  "name": "PARD6G",
+                  "description": "par-6 family cell polarity regulator gamma",
+                  "start": 284303,
+                  "stop": 365293,
+                  "variant_inside_gene_span": true
+                },
+                {
+                  "name": "LOC119870691",
+                  "description": "basic proline-rich protein-like",
+                  "start": 284400,
+                  "stop": 283810,
+                  "variant_inside_gene_span": false
+                },
+                {
+                  "name": "LOC100685536",
+                  "description": "uncharacterized LOC100685536",
+                  "start": 470818,
+                  "stop": 440851,
+                  "variant_inside_gene_span": false
+                }
+              ]
+            }
+          },
+          {
+            "tool": "search_gene_info",
+            "args": {
+              "gene_symbol": "PARD6G",
+              "organism": "Canis lupus familiaris"
+            },
+            "result": [
+              {
+                "name": "PARD6G",
+                "description": "par-6 family cell polarity regulator gamma",
+                "organism": "Canis lupus familiaris",
+                "summary": ""
+              }
+            ]
+          },
+          {
+            "tool": "fetch_reference_sequence",
+            "args": {
+              "chromosome": "1",
+              "position": 363618
+            },
+            "result": {
+              "sequence": "AAAGCTGCAAGCCTATAAATGTTTATCATAATGTTTTTTTATATTTAAATT",
+              "window_start": 363593,
+              "accession": "NC_049222.1"
+            }
+          }
+        ],
+        "species_specific": []
+      },
+      "limitations": [
+        "No canine or cross-species literature found describing PARD6G disease associations.",
+        "Unusual genotype (A/G compound_het) where neither allele matches reference T was not resolved \u2014 could indicate a real biallelic/triallelic variant, sample mixture, or technical artifact; no tool available to adjudicate this.",
+        "No exon/reading-frame data available, so it is unknown whether this position is coding, intronic, or regulatory within PARD6G, and no protein-level consequence could be scored.",
+        "Evo2 deviation scores were very small for both alleles, but this is computational evidence only, not a validated pathogenicity measure, and the model's confidence/applicability to this exact locus is unverified."
+      ],
+      "agent_summary": "This variant sits within the boundaries of the PARD6G gene on chromosome 1, but there is no existing literature tying PARD6G to any known disease in dogs, and computational scoring (Evo2) showed only minimal deviation for either called allele, indicating no strong signal of functional disruption. The genotype call itself (A/G, with neither allele matching the T reference) is unusual and could not be fully explained with the tools available. Overall, current evidence is insufficient to call this a plausible genetic risk factor."
+    },
+    {
+      "id": "RF-1-363892",
+      "risk_factor": "Homozygous A>C substitution at chr1:363892 (Canis lupus familiaris), located within the genomic span of PARD6G (par-6 family cell polarity regulator gamma), but with no clear evidence of functional/disease significance",
+      "confidence": {
+        "level": "low",
+        "score": null,
+        "rationale": "The variant falls within the coordinate span of PARD6G, a gene with predicted (not experimentally confirmed) roles in epithelial cell polarity based on human gene annotation (Alliance of Genome Resources, via Homo sapiens gene info lookup) \u2014 no dog-specific functional data exists. No literature search hits linked PARD6G to any canine phenotype or disease (searched broadly, found only unrelated canine disease-gene papers: RAB24/ataxia, AKNA/pulmonary disease, COL6A1/muscular dystrophy, INPP5E/renal dysplasia, AMPD2/retinopathy \u2014 none relevant). Evo2 (evo2_1b_base) sequence-based deviation score for the A>C substitution was -0.0095, essentially near-zero/negligible, suggesting the local sequence context is not strongly disrupted by this substitution according to the model. However, it is unknown whether this position is exonic, intronic, or regulatory within PARD6G \u2014 no exon/reading-frame annotation tool was available, so protein-level consequence (if any) cannot be determined, and score_protein_variant_esm2 was not used per instructions since no paper states a specific protein-level change."
+      },
+      "species_relevance": "unknown",
+      "variants": [
+        {
+          "chromosome": "1",
+          "position": 363892,
+          "reference": "A",
+          "alternate": "C",
+          "genotype": "C/C"
+        }
+      ],
+      "genes": [
+        "PARD6G"
+      ],
+      "biological_interpretation": "The variant lies within the annotated span of PARD6G (283892-365293 approx based on search window, gene body 284303-365293), a paralog of PAR-6 polarity regulators predicted (in human annotation) to function in centrosome cycle regulation and epithelial apical/basal polarity establishment. Without exon-mapping data, it cannot be determined if this substitution is synonymous, missense, intronic, or regulatory. The near-zero Evo2 deviation score is weak evidence against a major disruptive effect on local sequence/regulatory function, but this is not a validated disease-relevance metric and does not substitute for direct functional or genetic-association evidence, which is currently absent for this gene in dogs.",
+      "evidence": {
+        "foundation_models": [
+          {
+            "tool": "score_dna_variant_evo2",
+            "args": {
+              "chromosome": "1",
+              "position": 363892,
+              "reference_base_at_position": "A",
+              "alternate_allele": "C",
+              "window_start": 363792
+            },
+            "result": {
+              "evo2_deviation": -0.0095,
+              "model": "evo2_1b_base"
+            }
+          }
+        ],
+        "literature": [
+          {
+            "tool": "search_literature",
+            "args": {
+              "query": "PARD6G dog variant disease"
+            },
+            "result": [
+              {
+                "title": "RAB24  Missense Variant in Dogs with Cerebellar Ataxia",
+                "doi": "10.3390/genes16080934",
+                "year": 2025,
+                "summary": "A missense variant in the RAB24 gene was identified in dogs with progressive cerebellar ataxia. This finding suggests RAB24 is a candidate gene for hereditary ataxias in dogs and potentially humans.",
+                "source": "pmc"
+              },
+              {
+                "title": "AKNA  Frameshift Variant in Three Dogs with Recurrent Inflammatory Pulmonary Disease",
+                "doi": "10.3390/genes10080567",
+                "year": 2019,
+                "summary": "Three related dogs with recurrent inflammatory pulmonary disease were studied for genetic causes. A frameshift variant in the AKNA gene was identified as the likely cause of the disease.",
+                "source": "pmc"
+              },
+              {
+                "title": "A Nonsense Variant in  COL6A1  in Landseer Dogs with Muscular Dystrophy",
+                "doi": "10.1534/g3.115.021923",
+                "year": 2015,
+                "summary": "A novel canine muscular dystrophy in Landseer dogs was studied. A nonsense variant in the COL6A1 gene was identified as the likely cause, creating a model for human Ullrich congenital muscular dystrophy.",
+                "source": "G3: Genes|Genomes|Genetics"
+              },
+              {
+                "title": "A splice site variant in  INPP5E  causes diffuse cystic renal dysplasia and hepatic fibrosis in dogs",
+                "doi": "10.1371/journal.pone.0204073",
+                "year": 2018,
+                "summary": "A splice site variant in the INPP5E gene was identified in Norwich Terriers with diffuse cystic renal disease and hepatic fibrosis. This variant is concluded to be the cause of this lethal ciliopathy, enabling genetic testing for eradication.",
+                "source": "PLoS ONE"
+              },
+              {
+                "title": "Frameshift Variant in  AMPD2  in Cirneco dell\u2019Etna Dogs with Retinopathy and Tremors",
+                "doi": "10.3390/genes15020238",
+                "year": 2024,
+                "summary": "A frameshift variant in the canine *AMPD2* gene was identified in Cirneco dell'Etna dogs with retinopathy and tremors. This variant is associated with a novel oculo-neurological syndrome in the breed.",
+                "source": "Genes"
+              }
+            ]
+          }
+        ],
+        "genomic_databases": [
+          {
+            "tool": "search_genes_near_position",
+            "args": {
+              "chromosome": "1",
+              "position": 363892,
+              "window_bp": 100000
+            },
+            "result": {
+              "genes_found": 4,
+              "genes": [
+                {
+                  "name": "ADNP2",
+                  "description": "ADNP homeobox 2",
+                  "start": 434321,
+                  "stop": 398371,
+                  "variant_inside_gene_span": false
+                },
+                {
+                  "name": "PARD6G",
+                  "description": "par-6 family cell polarity regulator gamma",
+                  "start": 284303,
+                  "stop": 365293,
+                  "variant_inside_gene_span": true
+                },
+                {
+                  "name": "LOC119870691",
+                  "description": "basic proline-rich protein-like",
+                  "start": 284400,
+                  "stop": 283810,
+                  "variant_inside_gene_span": false
+                },
+                {
+                  "name": "LOC100685536",
+                  "description": "uncharacterized LOC100685536",
+                  "start": 470818,
+                  "stop": 440851,
+                  "variant_inside_gene_span": false
+                }
+              ]
+            }
+          },
+          {
+            "tool": "search_gene_info",
+            "args": {
+              "gene_symbol": "PARD6G",
+              "organism": "Canis lupus familiaris"
+            },
+            "result": [
+              {
+                "name": "PARD6G",
+                "description": "par-6 family cell polarity regulator gamma",
+                "organism": "Canis lupus familiaris",
+                "summary": ""
+              }
+            ]
+          },
+          {
+            "tool": "fetch_reference_sequence",
+            "args": {
+              "chromosome": "1",
+              "position": 363892
+            },
+            "result": {
+              "sequence": "AAATTAAGCTCTGAAAGTTGGGATAGCAATCTGGACAGTATTACCTCATTTTCAGAGAAAAGTAAGATTAGTTTCTGATGGAATTTCTAACAAACAAAATAGTGGAGAGTTAGCAAAGAGTTTCATTTAATCCTTAATATTTAAGACAAGTTGTTTAGTTATTAATTTCATTTCCTGGTTGAGGCAAATATTTATATATCA",
+              "window_start": 363792,
+              "accession": "NC_049222.1"
+            }
+          },
+          {
+            "tool": "search_gene_info",
+            "args": {
+              "gene_symbol": "PARD6G",
+              "organism": "human"
+            },
+            "result": [
+              {
+                "name": "PARD6G",
+                "description": "par-6 family cell polarity regulator gamma",
+                "organism": "Homo sapiens",
+                "summary": "Predicted to be involved in centrosome cycle; establishment or maintenance of epithelial cell apical/basal polarity; and regulation of cellular localization. Predicted to be located in cytosol; plasma membrane; and tight junction. Predicted to be part of PAR polarity complex. Predicted to be active in apical plasma membrane; cell cortex; and nucleus. [provided by Alliance of Genome Resources, Jul 2025]"
+              }
+            ]
+          }
+        ],
+        "species_specific": []
+      },
+      "limitations": [
+        "No exon/intron/reading-frame annotation available to determine if variant is coding, and if coding, what amino acid change (if any) results.",
+        "No canine-specific functional or disease literature exists for PARD6G; human gene function is only 'predicted' per Alliance of Genome Resources, not experimentally validated.",
+        "Evo2 deviation score is a sequence-likelihood metric, not a disease-probability estimate, and was very small in magnitude here (-0.0095), arguing against but not ruling out functional impact.",
+        "No protein-level scoring performed due to lack of a literature-confirmed protein consequence (per protocol, position should not be guessed from DNA coordinates)."
+      ],
+      "agent_summary": "This homozygous variant sits inside the PARD6G gene, which in other species is predicted to help control cell polarity, but there's no dog-specific research linking this gene to any disease and no data on whether this exact position affects the protein. A computational sequence model (Evo2) found essentially no unusual deviation from the reference at this position. Overall, this does not look like a strong candidate risk factor based on current evidence, but data are limited."
+    },
+    {
+      "id": "RF-1-373664",
+      "risk_factor": "No significant risk factor identified \u2014 intergenic variant near PARD6G/ADNP2 with negligible predicted functional impact",
+      "confidence": {
+        "level": "low",
+        "score": 0.1,
+        "rationale": "The variant does not fall within any annotated gene (nearest gene PARD6G ends ~8.4 kb upstream; ADNP2 begins ~25 kb away), so no direct coding or splicing consequence can be inferred. Evo2 deviation score was essentially negligible (-0.0059), indicating the local sequence context is not strongly disfavored relative to reference \u2014 this argues against a major regulatory disruption, though Evo2 scores are not calibrated to a disease probability. No literature was found linking this locus, PARD6G, or ADNP2 to any canine phenotype or disease."
+      },
+      "species_relevance": "same_species",
+      "variants": [
+        {
+          "chromosome": "1",
+          "position": 373664,
+          "reference": "C",
+          "alternate": "T",
+          "genotype": "T/T"
+        }
+      ],
+      "genes": [
+        "PARD6G",
+        "ADNP2"
+      ],
+      "biological_interpretation": "The variant lies in an intergenic region on chromosome 1, closest to PARD6G (par-6 family cell polarity regulator gamma) and ADNP2 (ADNP homeobox 2), both of which are annotated in the dog genome but have no summarized functional description or disease association retrieved here. Being outside any gene body, the variant is unlikely to alter protein-coding sequence; any effect would need to be via distal regulatory elements, which the low Evo2 deviation score does not support as a strong disruption.",
+      "evidence": {
+        "foundation_models": [
+          {
+            "tool": "score_dna_variant_evo2",
+            "args": {
+              "chromosome": "1",
+              "position": 373664,
+              "reference_base_at_position": "C",
+              "alternate_allele": "T",
+              "window_start": 373564
+            },
+            "result": {
+              "evo2_deviation": -0.0059,
+              "model": "evo2_1b_base"
+            }
+          }
+        ],
+        "literature": [
+          {
+            "tool": "search_literature",
+            "args": {
+              "query": "PARD6G ADNP2 dog canine disease variant chromosome 1"
+            },
+            "result": [
+              {
+                "title": "Genetic prevalence and clinical relevance of canine Mendelian disease variants in over one million dogs",
+                "doi": "10.1371/journal.pgen.1010651",
+                "year": 2023,
+                "summary": "This study screened 250 Mendelian disease variants in over one million dogs. Fifty-seven percent of dogs carried at least one variant, with 10 showing full penetrance and 22 having plausible clinical significance.",
+                "source": "PLOS Genetics"
+              },
+              {
+                "title": "Genome-wide association study to identify canine hip dysplasia loci\nin dogs",
+                "doi": "10.5187/jast.2020.62.3.306",
+                "year": 2020,
+                "summary": "A genome-wide association study analyzed 69 Korean army dogs for canine hip dysplasia. SNPs on chromosome 4 were found to significantly impact the condition's expression.",
+                "source": "pmc"
+              },
+              {
+                "title": "Frameshift Variant in  AMPD2  in Cirneco dell\u2019Etna Dogs with Retinopathy and Tremors",
+                "doi": "10.3390/genes15020238",
+                "year": 2024,
+                "summary": "A frameshift variant in the canine *AMPD2* gene was identified in Cirneco dell'Etna dogs with retinopathy and tremors. This variant is associated with a novel oculo-neurological syndrome in the breed.",
+                "source": "Genes"
+              },
+              {
+                "title": "CCDC66  frameshift variant associated with a new form of early-onset progressive retinal atrophy in Portuguese Water Dogs",
+                "doi": "10.1038/s41598-020-77980-5",
+                "year": 2020,
+                "summary": "A CCDC66 frameshift variant was identified as the cause of early-onset progressive retinal atrophy in Portuguese Water Dogs. This variant leads to a truncated protein that is mislocalized, suggesting CCDC66's role in retinal function.",
+                "source": "pmc"
+              },
+              {
+                "title": "Whole Genome Sequencing Reveals Multiple Linked Genetic Variants on Canine Chromosome 12 Associated with Risk for Symmetrical Lupoid Onychodystrophy (SLO) in the Bearded Collie",
+                "doi": "10.3390/genes12081265",
+                "year": 2021,
+                "summary": "Whole genome sequencing identified genetic variants on canine chromosome 12 linked to symmetrical lupoid onychodystrophy (SLO) in Bearded Collies. These variants, often with predicted damaging effects, are strongly associated with risk and may be linked to DLA class II risk haplotypes.",
+                "source": "pmc"
+              }
+            ]
+          }
+        ],
+        "genomic_databases": [
+          {
+            "tool": "search_genes_near_position",
+            "args": {
+              "chromosome": "1",
+              "position": 373664,
+              "window_bp": 100000
+            },
+            "result": {
+              "genes_found": 5,
+              "genes": [
+                {
+                  "name": "ADNP2",
+                  "description": "ADNP homeobox 2",
+                  "start": 434321,
+                  "stop": 398371,
+                  "variant_inside_gene_span": false
+                },
+                {
+                  "name": "PARD6G",
+                  "description": "par-6 family cell polarity regulator gamma",
+                  "start": 284303,
+                  "stop": 365293,
+                  "variant_inside_gene_span": false
+                },
+                {
+                  "name": "LOC119870691",
+                  "description": "basic proline-rich protein-like",
+                  "start": 284400,
+                  "stop": 283810,
+                  "variant_inside_gene_span": false
+                },
+                {
+                  "name": "LOC119870385",
+                  "description": "uncharacterized LOC119870385",
+                  "start": 470691,
+                  "stop": 476855,
+                  "variant_inside_gene_span": false
+                },
+                {
+                  "name": "LOC100685536",
+                  "description": "uncharacterized LOC100685536",
+                  "start": 470818,
+                  "stop": 440851,
+                  "variant_inside_gene_span": false
+                }
+              ]
+            }
+          },
+          {
+            "tool": "search_gene_info",
+            "args": {
+              "gene_symbol": "PARD6G",
+              "organism": "Canis lupus familiaris"
+            },
+            "result": [
+              {
+                "name": "PARD6G",
+                "description": "par-6 family cell polarity regulator gamma",
+                "organism": "Canis lupus familiaris",
+                "summary": ""
+              }
+            ]
+          },
+          {
+            "tool": "search_gene_info",
+            "args": {
+              "gene_symbol": "ADNP2",
+              "organism": "Canis lupus familiaris"
+            },
+            "result": [
+              {
+                "name": "ADNP2",
+                "description": "ADNP homeobox 2",
+                "organism": "Canis lupus familiaris",
+                "summary": ""
+              }
+            ]
+          }
+        ],
+        "species_specific": []
+      },
+      "limitations": [
+        "Variant is intergenic, not within any gene span, so functional consequence (if any) would have to be regulatory and is not directly testable with available tools.",
+        "No dog-specific or cross-species literature was found for this exact locus or for PARD6G/ADNP2 disease associations.",
+        "Evo2 deviation score is a sequence-likelihood metric, not a validated pathogenicity predictor.",
+        "No protein-level consequence could be assessed since the variant is non-coding and no paper provides a protein-level annotation, per tool-use guidance.",
+        "Homozygous alt genotype (T/T) noted but zygosity alone does not establish pathogenicity absent a known functional link."
+      ],
+      "agent_summary": "This variant sits in a non-genic stretch of DNA between two genes (PARD6G and ADNP2) on chromosome 1, not inside either one. A computational sequence model found nothing unusual about this position, and no scientific literature ties this location or nearby genes to any known dog disease. Overall, current evidence does not support this being a meaningful genetic risk factor, though absence of a gene overlap and a quiet computational score is not the same as proof of safety."
+    },
+    {
+      "id": "RF-1-412573",
+      "risk_factor": "Homozygous T>C variant at chr1:412573 (dog), located within the span of ADNP2 (ADNP homeobox 2)",
+      "confidence": {
+        "level": "low",
+        "score": null,
+        "rationale": "The variant falls within the genomic span of ADNP2, a gene with a plausible nervous-system-development role based on human annotation (predicted transcription factor, chromatin-associated), and ADNP2's paralog ADNP is a well-established human autism/neurodevelopmental disease gene. However: (1) no canine-specific literature links ADNP2 variants to any dog phenotype or breed disease; (2) no information establishes whether this specific position is coding, intronic, regulatory, or otherwise functionally relevant within the gene; (3) the Evo2 deviation score for this substitution was essentially negligible (-0.0035), which does not support a strong functional/deleterious effect at the sequence level, though this is a computational prediction and not definitive; (4) no protein-level (missense) annotation exists for this position since exon/reading-frame data is unavailable, so ESM2 protein scoring could not legitimately be performed."
+      },
+      "species_relevance": "different_species",
+      "variants": [
+        {
+          "chromosome": "1",
+          "position": 412573,
+          "reference": "T",
+          "alternate": "C",
+          "genotype": "C/C"
+        }
+      ],
+      "genes": [
+        "ADNP2"
+      ],
+      "biological_interpretation": "ADNP2 is annotated (in human) as a predicted DNA-binding transcription factor involved in nervous system development, located in chromatin/nucleus. Its paralog ADNP causes a human SWI/SNF-related autism syndrome via de novo mutations (Helsmoortel-Van der Aa syndrome), and zebrafish adnp/adnp2 double mutants show neurodevelopmental-disorder-like behavior, suggesting some functional redundancy/relatedness between the paralogs. This raises a hypothetical mechanistic link between ADNP2 disruption and neurodevelopmental phenotypes, but this is inferred from a different gene (ADNP) and different species (human, zebrafish) rather than direct evidence for ADNP2 itself or for this variant. The near-zero Evo2 deviation score suggests the local sequence context around this position is not strongly non-reference-like in evolutionary/functional terms, arguing against a major deleterious effect, though Evo2 scores are not a definitive functional readout.",
+      "evidence": {
+        "foundation_models": [
+          {
+            "tool": "score_dna_variant_evo2",
+            "args": {
+              "chromosome": "1",
+              "position": 412573,
+              "reference_base_at_position": "T",
+              "alternate_allele": "C",
+              "window_start": 412473
+            },
+            "result": {
+              "evo2_deviation": -0.0035,
+              "model": "evo2_1b_base"
+            }
+          }
+        ],
+        "literature": [
+          {
+            "tool": "search_literature",
+            "args": {
+              "query": "ADNP2 dog canine variant disease"
+            },
+            "result": [
+              {
+                "title": "Canine Multiple System Degeneration Associated with Sequence Variants in  SERAC1",
+                "doi": "10.3390/genes15111378",
+                "year": 2024,
+                "summary": "Canine multiple system degeneration (CMSD) was studied in two breeds, with whole-genome sequencing identifying variants in the SERAC1 gene. These SERAC1 variants are strongly associated with the disease and suggest CMSD as a model for human SERAC1-deficiency disorders.",
+                "source": "Genes"
+              },
+              {
+                "title": "Novel Homozygous  ADAMTS2  Variants and Associated Disease Phenotypes in Dogs with Dermatosparactic Ehlers\u2013Danlos Syndrome",
+                "doi": "10.3390/genes13112158",
+                "year": 2022,
+                "summary": "Two novel homozygous ADAMTS2 variants were identified in dogs with dermatosparactic Ehlers-Danlos syndrome. These variants are associated with varying degrees of skin fragility and other EDS-related phenotypes.",
+                "source": "Genes"
+              },
+              {
+                "title": "Frameshift Variant in  AMPD2  in Cirneco dell\u2019Etna Dogs with Retinopathy and Tremors",
+                "doi": "10.3390/genes15020238",
+                "year": 2024,
+                "summary": "A frameshift variant in the canine *AMPD2* gene was identified in Cirneco dell'Etna dogs with retinopathy and tremors. This variant is associated with a novel oculo-neurological syndrome in the breed.",
+                "source": "Genes"
+              },
+              {
+                "title": "Intronic variant in  POU1F1  associated with canine pituitary dwarfism",
+                "doi": "10.1007/s00439-021-02259-2",
+                "year": 2021,
+                "summary": "A study investigated canine pituitary dwarfism in Karelian Bear Dogs, identifying a specific intronic variant in the POU1F1 gene. This variant is strongly associated with the condition and likely affects gene splicing.",
+                "source": "pmc"
+              },
+              {
+                "title": "A Nonsense Variant in  COL6A1  in Landseer Dogs with Muscular Dystrophy",
+                "doi": "10.1534/g3.115.021923",
+                "year": 2015,
+                "summary": "A novel canine muscular dystrophy in Landseer dogs was studied. A nonsense variant in the COL6A1 gene was identified as the likely cause, creating a model for human Ullrich congenital muscular dystrophy.",
+                "source": "G3: Genes|Genomes|Genetics"
+              }
+            ]
+          },
+          {
+            "tool": "search_literature",
+            "args": {
+              "query": "ADNP2 human disease association neurodevelopmental"
+            },
+            "result": [
+              {
+                "title": "Genetic and Environmental Factors Co-Contributing to Behavioral Abnormalities in  adnp / adnp2  Mutant Zebrafish",
+                "doi": "10.3390/ijms25179469",
+                "year": 2024,
+                "summary": "Zebrafish with mutations in *adnp* and *adnp2* show developmental delays and NDD-like behaviors. Environmental endocrine disruptors worsen these behaviors, indicating a genetic and environmental contribution to neurodevelopmental disorders.",
+                "source": "pmc"
+              },
+              {
+                "title": "A SWI/SNF related autism syndrome caused by  de novo  mutations in  ADNP",
+                "doi": "10.1038/ng.2899",
+                "year": 2014,
+                "summary": "This study identified de novo mutations in the ADNP gene in 10 patients with autism spectrum disorder, intellectual disability, and facial dysmorphisms. These mutations cause a SWI/SNF related autism syndrome and ADNP is a frequent cause of ASD.",
+                "source": "pmc"
+              },
+              {
+                "title": "Activity-dependent neuroprotective protein (ADNP): from autism to Alzheimer\u2019s disease",
+                "doi": "10.1186/2193-1801-4-S1-L37",
+                "year": 2015,
+                "summary": "",
+                "source": "pmc"
+              },
+              {
+                "title": "Modeling human neurodevelopmental diseases with brain organoids",
+                "doi": "10.1186/s13619-021-00103-6",
+                "year": 2022,
+                "summary": "Brain organoids derived from human stem cells are used to model neurodevelopmental diseases. These organoids have advanced the identification of disease phenotypes and underlying mechanisms.",
+                "source": "pmc"
+              },
+              {
+                "title": "Haploinsufficiency as a disease mechanism in  GNB1 \u2010associated neurodevelopmental disorder",
+                "doi": "10.1002/mgg3.1477",
+                "year": 2020,
+                "summary": "Two patients with neurodevelopmental disorders were studied for GNB1 gene variants. Both variants caused loss of GNB1 protein function, suggesting haploinsufficiency is a disease mechanism.",
+                "source": "pmc"
+              }
+            ]
+          }
+        ],
+        "genomic_databases": [
+          {
+            "tool": "search_genes_near_position",
+            "args": {
+              "chromosome": "1",
+              "position": 412573,
+              "window_bp": 100000
+            },
+            "result": {
+              "genes_found": 6,
+              "genes": [
+                {
+                  "name": "ADNP2",
+                  "description": "ADNP homeobox 2",
+                  "start": 434321,
+                  "stop": 398371,
+                  "variant_inside_gene_span": true
+                },
+                {
+                  "name": "RBFA",
+                  "description": "ribosome binding factor A",
+                  "start": 519948,
+                  "stop": 490586,
+                  "variant_inside_gene_span": false
+                },
+                {
+                  "name": "PARD6G",
+                  "description": "par-6 family cell polarity regulator gamma",
+                  "start": 284303,
+                  "stop": 365293,
+                  "variant_inside_gene_span": false
+                },
+                {
+                  "name": "LOC119870385",
+                  "description": "uncharacterized LOC119870385",
+                  "start": 470691,
+                  "stop": 476855,
+                  "variant_inside_gene_span": false
+                },
+                {
+                  "name": "LOC102154355",
+                  "description": "uncharacterized LOC102154355",
+                  "start": 504897,
+                  "stop": 512797,
+                  "variant_inside_gene_span": false
+                },
+                {
+                  "name": "LOC100685536",
+                  "description": "uncharacterized LOC100685536",
+                  "start": 470818,
+                  "stop": 440851,
+                  "variant_inside_gene_span": false
+                }
+              ]
+            }
+          },
+          {
+            "tool": "search_gene_info",
+            "args": {
+              "gene_symbol": "ADNP2",
+              "organism": "Canis lupus familiaris"
+            },
+            "result": [
+              {
+                "name": "ADNP2",
+                "description": "ADNP homeobox 2",
+                "organism": "Canis lupus familiaris",
+                "summary": ""
+              }
+            ]
+          },
+          {
+            "tool": "search_gene_info",
+            "args": {
+              "gene_symbol": "ADNP2",
+              "organism": "human"
+            },
+            "result": [
+              {
+                "name": "ADNP2",
+                "description": "ADNP homeobox 2",
+                "organism": "Homo sapiens",
+                "summary": "Predicted to enable DNA-binding transcription factor activity, RNA polymerase II-specific. Predicted to be involved in nervous system development and regulation of gene expression. Predicted to be located in chromatin. Predicted to be active in nucleus. [provided by Alliance of Genome Resources, Jul 2025]"
+              }
+            ]
+          }
+        ],
+        "species_specific": []
+      },
+      "limitations": [
+        "No canine-specific studies link ADNP2 variants to any dog disease or phenotype.",
+        "Unknown whether the variant position is coding, intronic, or regulatory within ADNP2 - no exon/reading-frame annotation tool was available.",
+        "Evidence for ADNP2's neurodevelopmental role is drawn from human gene annotation and from its paralog ADNP (human) and zebrafish adnp/adnp2 studies - not the same gene/species as the variant.",
+        "Evo2 deviation score (-0.0035) is very small, arguing against strong functional impact, but this is a computational prediction only, not a validated measure of pathogenicity.",
+        "Protein-level (missense) scoring via ESM2 was not performed because no literature source states an explicit protein-level (amino acid) consequence for this variant, and translating DNA position to protein position without exon/frame data would be an unjustified guess."
+      ],
+      "agent_summary": "This variant lies within the ADNP2 gene, which in humans is predicted to play a role in nervous system development and is a close relative of ADNP, a gene linked to autism-spectrum neurodevelopmental disorders in humans. However, there is no direct evidence in dogs linking ADNP2 to any disease, and a computational sequence-based score (Evo2) showed only a negligible deviation, not suggesting strong disruption. Overall, this is a plausible but weakly supported candidate, and the evidence is not sufficient to call it a confirmed risk factor."
+    }
+  ],
+  "scan_stats": {
+    "markers_scanned": 6130,
+    "no_calls_skipped": 7,
+    "reference_unresolvable_skipped": 0,
+    "candidates_found": 5000,
+    "stopped_early": true
+  },
+  "triage_stats": {
+    "candidates_checked": 15,
+    "in_or_near_gene": 15,
+    "no_gene_nearby": 0,
+    "lookup_failed": 0,
+    "stopped_early": false
+  },
+  "summary": {
+    "total_findings": 15,
+    "confidence_counts": {
+      "high": 0,
+      "medium": 0,
+      "low": 9,
+      "insufficient_evidence": 6
+    }
+  }
+}

@@ -10,12 +10,19 @@ proposal (research question, tools, architecture, timeline) is in
 
 ## What it does
 
-Takes a raw genomic export (Embark CSV today, others later) and produces a
-two-layer report per flagged variant — plain-language for the pet owner,
-full scores + citations for the researcher — by routing each variant through
-protein-level (ESM2/ESM3/ESMFold) or DNA-level (Evo1) scoring, escalating
-the highest-priority hits to AlphaFold3, and grounding every claim in live
-literature via Paperclip.
+Explains the *mechanism* behind a genomic finding, not just the label —
+for species outside every existing interpretation tool's training and
+validation set. Takes a raw genomic export (Embark CSV today, others later)
+and produces a two-layer report per flagged variant — plain-language for
+the pet owner, full scores + citations for the researcher — by routing each
+variant through protein-level (ESM2/ESM3/ESMFold) or DNA-level (Evo1)
+scoring, escalating the highest-priority hits to AlphaFold3, and grounding
+every claim in live literature via Paperclip.
+
+Ground truth here is Embark's own genotype calls, not clinical outcomes —
+"mechanistically grounded" describes what the models compute and what the
+literature says about the gene, not a claim that the pipeline has been
+validated against clinical results.
 
 ## Repo layout
 
