@@ -28,3 +28,16 @@ def get_placeholder_sequence(gene: str, length: int = 220) -> str:
         if i % len(seed) == 0:
             seed = hashlib.sha256(seed).digest()
     return "".join(out)
+
+
+class PlaceholderSequenceClient:
+    """SequenceClient (wildtype/tools/base.py) backed by fake sequences —
+    used in mock/local modes. Always reports is_real=False so callers
+    (agent/loop.py) can flag placeholder biology in the report."""
+
+    def fetch(self, gene: str, organism: str = "Canis lupus familiaris"):
+        from wildtype.tools.base import SequenceResult
+
+        # organism unused — placeholder is a pure function of gene name, but
+        # accepts the param so it satisfies SequenceClient like the real one.
+        return SequenceResult(sequence=get_placeholder_sequence(gene), is_real=False, source="placeholder")

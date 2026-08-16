@@ -90,11 +90,23 @@ class LiteratureClient(Protocol):
 
 
 @dataclass
+class SequenceResult:
+    sequence: str
+    is_real: bool  # True = real UniProt fetch, False = deterministic placeholder
+    source: str  # "uniprot" | "placeholder"
+
+
+class SequenceClient(Protocol):
+    def fetch(self, gene: str, organism: str = "Canis lupus familiaris") -> SequenceResult: ...
+
+
+@dataclass
 class Toolset:
     scoring: ScoringClient
     structure: StructureClient
     dna: DNAScoringClient
     literature: LiteratureClient
+    sequences: SequenceClient
     mode: str
 
 
@@ -108,12 +120,14 @@ def get_toolset(mode: str | None = None) -> Toolset:
             MockDNAClient,
             MockLiteratureClient,
         )
+        from wildtype.tools.placeholder_sequences import PlaceholderSequenceClient
 
         return Toolset(
             scoring=MockScoringClient(),
             structure=MockStructureClient(),
             dna=MockDNAClient(),
             literature=MockLiteratureClient(),
+            sequences=PlaceholderSequenceClient(),
             mode=mode,
         )
 
@@ -122,20 +136,29 @@ def get_toolset(mode: str | None = None) -> Toolset:
         # prediction and DNA scoring have no offline-capable equivalent, so
         # those two still fall back to mocks even in "local" mode — that's
         # intentional, not a bug: ESM2 is the one model small enough to run
-        # on a laptop tonight.
+        # on a laptop tonight. Sequences stay placeholder too — real UniProt
+        # fetch needs network access, which breaks "local" mode's offline
+        # guarantee even though it needs no sponsor key.
         from wildtype.tools.esm_local import LocalESM2Client
         from wildtype.tools.mock_data import MockStructureClient, MockDNAClient, MockLiteratureClient
+        from wildtype.tools.placeholder_sequences import PlaceholderSequenceClient
 
         return Toolset(
             scoring=LocalESM2Client(),
             structure=MockStructureClient(),
             dna=MockDNAClient(),
             literature=MockLiteratureClient(),
+            sequences=PlaceholderSequenceClient(),
             mode=mode,
         )
 
     if mode == "proto":
-        from wildtype.tools.proto_client import ProtoScoringClient, ProtoStructureClient, ProtoDNAClient
+        from wildtype.tools.proto_client import (
+            ProtoScoringClient,
+            ProtoStructureClient,
+            ProtoDNAClient,
+            ProtoSequenceClient,
+        )
         from wildtype.tools.paperclip_client import PaperclipClient
 
         return Toolset(
@@ -143,6 +166,7 @@ def get_toolset(mode: str | None = None) -> Toolset:
             structure=ProtoStructureClient(),
             dna=ProtoDNAClient(),
             literature=PaperclipClient(),
+            sequences=ProtoSequenceClient(),
             mode=mode,
         )
 

@@ -13,7 +13,11 @@ A species-agnostic genomic variant interpretation agent that takes raw genomic d
 
 ## Research Question
 
-> Can a multi-scale agentic pipeline — combining DNA-level foundation models, protein language models, structure prediction, and live literature retrieval — deliver clinically actionable, mechanistically grounded variant interpretation for non-human species, where all existing tools either fail outright or require expert bioinformatics expertise to operate?
+> Can an agent explain the *mechanism* behind a genomic finding — not just label it — for a species that falls outside every existing interpretation tool's training and validation set?
+
+Human-centric tools (VEP, AlphaMissense) don't transfer to non-human genomes, and the species-agnostic foundation models that could work (ESM2, Evo1) have no agentic pipeline chaining them into literature-grounded, two-audience output. That gap — not the multi-model pipeline by itself — is the actual bet we're testing. We demo it live, on our own dog.
+
+*Scope note: "mechanistically grounded" is a claim about what the models compute (log-likelihood, structural deviation, functional embedding) and what the literature says about the gene — it is not a claim of clinical validation. The only ground truth we validate against is Embark's own genotype calls; we have no clinical outcome data to check mechanism-to-outcome accuracy against, and we should be precise about that distinction when judges ask.*
 
 ---
 
@@ -24,8 +28,8 @@ A species-agnostic genomic variant interpretation agent that takes raw genomic d
 | **Paperclip** | Live literature search across 11M+ papers, UniProt, PDB — grounds every variant finding in current evidence with citations |
 | **Proto** | Unified MCP interface to run ESMFold, AlphaFold3, Evo1, ProteinMPNN, TM-align, UniProt retrieval — the computational biology execution layer |
 | **Claude** | Agent brain — orchestrates the pipeline, reasons about tradeoffs between model outputs, generates the two-layer report |
-| **Biohub / ESM** | ESM2, ESM3, ESMC — protein language model scoring and functional embeddings |
-| **BenchFlow** | Workflow execution and tracking across pipeline steps |
+| ~~Biohub / ESM~~ | Dropped 2026-08-15 — `proto_tools` (Proto) already exposes `run_esm2_score`/`run_esm3_score`/`run_esmc_embeddings` directly; a second integration to the same models added no capability |
+| ~~BenchFlow~~ | Dropped 2026-08-15 — `github.com/benchflow-ai` is confirmed the correct org (AI-agent evaluation/benchmarking infra: SkillsBench, ClawsBench), it's just not something this pipeline needs; descoped as out of scope, not a mismatch |
 | **Benchling** | Structured storage and annotation of variant analysis results |
 
 ---
@@ -123,7 +127,7 @@ Ollie (Mini Aussie, female) has three flagged variants from her Embark report:
 | 12–3pm | Write Paperclip queries, validate ESM2 scores biologically | PhD |
 | 3–6pm | ESMFold structure prediction + output renderer (two layers) | Engineer |
 | 3–6pm | Interpret structures, write plain-language output templates | PhD |
-| 7–10pm | Evo1 for FGF4 insertion; tped novel variant scan; BenchFlow/Benchling integration | Both |
+| 7–10pm | Evo1 for FGF4 insertion; tped novel variant scan; Benchling integration | Both |
 
 ### Day 2 — Sunday Aug 16
 
@@ -204,4 +208,4 @@ Live URL shared with judges
 
 ## One-Line Pitch
 
-> "VEP tells you what a variant is. We built the agent that tells you what it means — computationally, structurally, and clinically — for any species. Demonstrated on our own dog."
+> "VEP tells you what a variant is. We built the agent that tells you what it means — computationally, structurally, and mechanistically — for any species. Demonstrated on our own dog."
